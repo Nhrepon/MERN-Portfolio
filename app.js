@@ -33,10 +33,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Database connection
 const mongoose = require("mongoose");
-const url = "mongodb://localhost:27017/MernEcommerce";
+const url = "mongodb://localhost:27017/MernPortfolio";
 const option = { user: "", pass: "", autoIndex: true };
 
-//const url="mongodb+srv://Repon:<password>@cluster0.nhslprh.mongodb.net/MernEcommerce";
+//const url="mongodb+srv://Repon:<password>@cluster0.nhslprh.mongodb.net/MernPortfolio";
 //const option={user:"Repon", pass:"Repon7248", autoIndex:true};
 
 mongoose

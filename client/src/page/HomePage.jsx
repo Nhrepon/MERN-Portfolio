@@ -1,10 +1,11 @@
 import React from "react";
 import MasterLayout from "../layout/MasterLayout";
 import BlogListComponents from "../components/blog/BlogListComponents";
+import HomeLayout from "../layout/HomeLayout";
 
 const HomePage = () => {
   return (
-    <MasterLayout>
+    <HomeLayout>
       <div className="container-fluid">
         <div className="container">
           <div className="row">
@@ -17,7 +18,7 @@ const HomePage = () => {
 
       <BlogListComponents />
 
-    </MasterLayout>
+    </HomeLayout>
   );
 };
 
