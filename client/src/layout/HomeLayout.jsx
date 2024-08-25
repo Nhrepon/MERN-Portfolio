@@ -9,8 +9,6 @@ const HomeLayout = (props) => {
         <div className='body'>
                     <TopNavigationBar/>
             <div className="container-fluid home-nav-bg">
-                <div className="row shadow-sm sticky-md-top">
-                </div>
                     <Feature/>
             </div>
 

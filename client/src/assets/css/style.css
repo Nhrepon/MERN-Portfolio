@@ -8,9 +8,72 @@ i{
     margin-right: 8px;
 }
 
+
+.hello{
+    display: inline-block;
+    position: relative;
+    padding-left: 80px;
+}
+.hello::after{
+    background-color: #d0d0d0;
+    position: absolute;
+    width: 60px;
+    height: 2px;
+    content: "";
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .home-nav-bg{
     background-image: url("https://th.bing.com/th/id/R.865012e4c2d7c2c7ed619e854c6ca579?rik=L%2fIYeFhS%2f3Z5Rg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fzwCETTo.jpg&ehk=zPBHsOuOj3D5bw4VQJ5PRbR4xoiD8K2S6uk2p%2bTMadk%3d&risl=&pid=ImgRaw&r=0");
     background-repeat: no-repeat;
     background-size: cover;
     
+}
+
+
+
+.card{
+    transition: transform 0.8s;
+}
+.card:hover{
+    transform: scale(1.1);
+}
+
+
+.contact-info .item{
+    width: 100%;
+    overflow: hidden;
+}
+
+.contact-info .item .icon{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    float: left;
+}
+
+.contact-info .item .icon i{
+    margin: 0;
+}
+
+.contact-info .item .content{
+    overflow: hidden;
+}
+
+
+
+
+.review-img{
+    transition: transform 0.8s;
+}
+.review-img:hover{
+    transform: scale(1.1);
 }

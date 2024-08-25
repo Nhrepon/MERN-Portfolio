@@ -1,0 +1,59 @@
+.skill-box{}
+.skill-title{}
+.skill-bar{
+    height: 22px;
+    width: 100%;
+    background-color: rgba(53, 82, 60, 0.671);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.skill-bar-inner{
+    position: relative;
+    height: 100%;
+    border-radius: 15px;
+    background: #EF6327;
+    animation: progress 1.8s ease-in-out;
+    animation-delay: 0.5s;
+    display: block;
+    opacity: 1;
+    animation-fill-mode: forwards;
+    text-align: center;
+
+}
+.skill-tooltip{
+    position:absolute;
+    right:-14px;
+    top: -40px;
+    color:white;
+    padding:3px 8px;
+    border-radius: 5px;
+    background:rgb(25 135 84);
+    z-index:2;
+}
+.skill-tooltip::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    z-index: 1;
+    background: rgb(25 135 84);
+}
+
+
+
+
+
+
+
+@keyframes progress{
+    0%{
+        width:0;
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}

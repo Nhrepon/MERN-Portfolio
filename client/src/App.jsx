@@ -5,13 +5,13 @@ import RegistrationPage from './page/RegistrationPage';
 import NotFoundPage from './page/NotFoundPage';
 import LoginPage from './page/LoginPage';
 import BlogPage from './page/BlogPage';
-import ProductPage from './page/ProductPage';
 import AboutPage from './page/AboutPage';
 import ContactPage from './page/ContactPage';
 import {isLogin} from "./utility/Utility.js";
 import DashboardPage from "./admin/page/DashboardPage.jsx";
 import NewPostPage from "./admin/page/post/NewPostPage.jsx";
 import UserPage from "./admin/page/user/UserPage.jsx";
+import ProjectPage from './page/ProjectPage.jsx';
 
 const App = () => {
 
@@ -34,7 +34,7 @@ const App = () => {
 
 
             <Route path="/blog" element={<BlogPage/>} />
-            <Route path="/products" element={<ProductPage/>} />
+            <Route path="/projects" element={<ProjectPage/>} />
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/contact" element={<ContactPage/>} />
 
@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage/>}/>
 
             <Route path="/blog" element={<BlogPage/>}/>
-            <Route path="/products" element={<ProductPage/>}/>
+            <Route path="/projects" element={<ProjectPage/>}/>
             <Route path="/about" element={<AboutPage/>}/>
             <Route path="/contact" element={<ContactPage/>}/>
 

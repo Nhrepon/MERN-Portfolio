@@ -52,11 +52,12 @@ const BlogListComponents = () => {
     <div className="container-fluid">
       <div className="container">
         <div className="row">
-        <div className="col-12">
+        <div className="col-12"> 
+                
                 <p>Total blogs: {data.length}</p>
             </div>
         </div>
-        <div className="row">
+        <div className="row gx-5 gy-3">
             
           {data.map((item, i) => {
             return (

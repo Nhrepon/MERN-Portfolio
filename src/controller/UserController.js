@@ -1,4 +1,4 @@
-const BlogPostDetailsModel = require("../model/BlogPostDetailsModel");
+
 const UserModel = require("../model/UserModel");
 const ProfileModel = require("../model/ProfileModel");
 const {encodeToken} = require("../utility/TokenHelper");
