@@ -38,10 +38,10 @@ exports.userProfileRead=async (req, res)=>{
     try {
         const {userId} = req.headers;
 
-        const data=await UserModel.findOne({_id:userId}, {password:0});
+        const user=await UserModel.findOne({_id:userId}, {password:0});
         const profile = await ProfileModel.findOne({userId:userId}, {_id:0, userId:0});
 
-        res.json({status:"success", data:data, profile:profile});
+        res.json({status:"success", user:user, profile:profile});
     } catch (error) {
         res.json({status:"error", data:error});
     }
@@ -53,10 +53,10 @@ exports.userProfileRead=async (req, res)=>{
 
 exports.userProfileUpdate=async (req, res)=>{
     try {
-        const {id}=req.params;
+        const {userId}=req.headers;
         const reqBody=req.body;
-        const data=await UserModel.updateOne({_id:id}, reqBody, {upsert:true});
-        res.json({status:"Success", data:data});
+        const data=await ProfileModel.updateOne({userId:userId}, reqBody);
+        res.json({status:"success", data:data});
     } catch (error) {
         res.json({status:"Error", data:error});
     }

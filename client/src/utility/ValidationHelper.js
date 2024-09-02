@@ -5,8 +5,8 @@ class ValidationHelper {
       return OnlyLetterRegx.test(value);
     }
     static IsEmail(value) {
-      let EmailRegx = /\S+@\S+\.\S+/;
-      return EmailRegx.test(value);
+      let EmailRegex = /\S+@\S+\.\S+/;
+      return EmailRegex.test(value);
     }
     static IsMobile(value) {
       let MobileRegx = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/;

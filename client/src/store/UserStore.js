@@ -61,28 +61,60 @@ const UserStore = create((set)=>({
                 return response.data["status"] === "success";
             }
 
-
-
-
         }catch (e) {
             return {status:"error", error:e}
         }
     },
 
+
+
+
+    userProfileForm: {userName: "", firstName: "", lastName: "", age: "", gender: "", userMobile: "", userAddress: "", userPostalCode: "", userDistrict: "", userCity: "", userState: "",userCountry: ""},
+    userProfileFormOnChange:(name, value)=>{
+        set((state)=>({
+            userProfileForm:{
+                ...state.userProfileForm,
+                [name]:value,
+            },
+        }))
+    },
     userProfile: null,
     getUserProfile: async ()=>{
         try {
-            const profile = await axios.get("/api/userProfileRead");
-            if (profile.data["data"].length > 0){
-                set({userProfile: profile.data[0]});
+            const profileData = await axios.get("/api/userProfileRead");
+            
+            if(profileData.data["status"] === "success"){
+                set({ userProfile: profileData.data['profile'] });
+                set({ userProfileForm: profileData.data['profile'] });
             }else {
-                set({userProfile: []});
+                set({ userProfile: null});
             }
 
         }catch (error) {
             return ({status:"error", message:error});
         }
     },
+
+    userProfileUpdate: async (postBody)=>{
+        try {
+            set({userProfile:null});
+            const response = await axios.post("/api/userProfileUpdate", postBody);
+            return response.data["status"] === "success";
+        }catch (error) {
+            return ({status:"error", message:error});
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
 
 
     userLogout: async ()=>{
@@ -95,7 +127,7 @@ const UserStore = create((set)=>({
         }catch (error) {
             return ({status:"error", message:error});
         }
-    }
+    },
 
 
 

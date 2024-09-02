@@ -24,7 +24,7 @@ app.use(mongoSanitize());
 app.use(cookieParser());
 
 // Req rate limiting
-const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 3000 });
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30000 });
 app.use(limiter);
 
 // json body parse

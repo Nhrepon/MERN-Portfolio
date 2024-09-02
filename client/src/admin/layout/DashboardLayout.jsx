@@ -1,24 +1,22 @@
-import React from 'react';
+import React from "react";
 import MasterLayout from "../../layout/MasterLayout.jsx";
 import AdminSidebarNavigation from "../AdminSidebarNavigation.jsx";
 
 const DashboardLayout = (props) => {
-    return (
-        <MasterLayout>
-            <div className="container-fluid">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-2 p-0 border-end">
-                            <AdminSidebarNavigation/>
-                        </div>
-                        <div className="col-10 py-3 bg-light">
-                            {props.children}
-                        </div>
-                    </div>
-                </div>
+  return (
+    <MasterLayout>
+      <div className="container-fluid">
+        <div className="container">
+          <div className="row flex-nowrap">
+            <div className="col-auto col-md-3 col-xl-2 px-sm-2">
+              <AdminSidebarNavigation />
             </div>
-        </MasterLayout>
-    );
+            <div className="col py-3 px-3 bg-light">{props.children}</div>
+          </div>
+        </div>
+      </div>
+    </MasterLayout>
+  );
 };
 
 export default DashboardLayout;

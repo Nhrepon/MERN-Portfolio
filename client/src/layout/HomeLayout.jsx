@@ -4,7 +4,11 @@ import { Toaster } from 'react-hot-toast';
 import TopNavigationBar from '../components/TopNavigationBar';
 import Feature from '../components/feature/Feature';
 
+
 const HomeLayout = (props) => {
+  
+
+
     return (
         <div className='body'>
                     <TopNavigationBar/>

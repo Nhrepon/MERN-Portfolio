@@ -9,14 +9,25 @@ import ReviewComponents from "../components/reviews/ReviewComponents";
 import BlogListComponents from "../components/blog/BlogListComponents";
 import ContactComponents from "../components/ContactComponents";
 
+
 const HomePage = () => {
+
+
+
+
+
+
+
+
+
+
   return (
     <HomeLayout>
       <AboutUsComponent />
       <SkillComponent />
       <ServicesComponents />
 
-      
+
       <div className="container">
         <div className="row">
           <div className="col-12">

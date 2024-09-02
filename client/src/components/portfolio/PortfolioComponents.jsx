@@ -1,5 +1,5 @@
-import React from "react";
-import ServicesCardComponents from "../services/ServicesCardComponents";
+
+import PortfolioCardComponents from "./PortfolioCardComponents";
 
 const PortfolioComponents = () => {
     const data = [
@@ -52,7 +52,8 @@ const PortfolioComponents = () => {
                         return(
                             <>
                             <div className="col-12 col-md-4">
-                                <ServicesCardComponents
+                                <PortfolioCardComponents
+                                key={i}
                                 image={item.image}
                                 title={item.title}
                                 text={item.text}
@@ -67,7 +68,7 @@ const PortfolioComponents = () => {
                 </div>
                 <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                     <div className="col-12 col-md-4">
-                        <ServicesCardComponents
+                        <PortfolioCardComponents
                         image="https://thereadersea.com/wp-content/uploads/2023/05/mern-stack.png"
                         title="Web application development with MERN Stack"
                         text="Build a web application using the MERN stack, which stands for MongoDB, Express, React, and Node.js."
@@ -76,7 +77,7 @@ const PortfolioComponents = () => {
                 </div>
                 <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
                     <div className="col-12 col-md-4">
-                        <ServicesCardComponents
+                        <PortfolioCardComponents
                         image="https://thereadersea.com/wp-content/uploads/2023/05/mern-stack.png"
                         title="Web application development with MERN Stack"
                         text="Build a web application using the MERN stack, which stands for MongoDB, Express, React, and Node.js."
@@ -85,7 +86,7 @@ const PortfolioComponents = () => {
                 </div>
                 <div className="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
                     <div className="col-12 col-md-4">
-                        <ServicesCardComponents
+                        <PortfolioCardComponents
                         image="https://talent-outsourcing.com/wp-content/uploads/2021/01/ezgif.com-gif-maker.jpg"
                         title="Mobile application development"
                         text="Build a mobile application using the Flutter, which stands for Dart, Flutter, and Node.js."

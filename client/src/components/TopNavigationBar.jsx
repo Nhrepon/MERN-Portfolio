@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { isLogin } from "../utility/Utility.js";
 import userStore from "../store/UserStore.js";
 import SubmitButton from "./users/SubmitButton.jsx";
+import $ from "jquery";
 
 const TopNavigationBar = () => {
   const navigate = useNavigate();
@@ -16,13 +17,48 @@ const TopNavigationBar = () => {
     navigate("/");
   }
 
+
+
+    // Go to top ---------------------------------------------
+    $(function(){
+      var gotoTop = $(".goto-top");
+      gotoTop.click(function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        //$("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+      });
+    });
+    
+    
+    
+    // Change navigation bg on scroll ---------------------------------------------
+      $(function() {
+        var topNavBg = $(".top-nav");
+        var gotoTop = $(".goto-top");
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+    
+            if (scroll >= 200) {
+              topNavBg.removeClass('bg-transparent').addClass("bg-light");
+              gotoTop.removeClass('d-none').addClass("d-flex");
+              
+            } else {
+              topNavBg.removeClass("bg-light").addClass('bg-transparent');
+              gotoTop.removeClass('d-flex').addClass("d-none");
+            }
+        });
+    });
+    
+
+
+
   return (
-    <div className="container-fluid sticky-md-top bg-transparent z-3 shadow-sm">
+    <div className="container-fluid sticky-md-top bg-transparent z-3 shadow-sm top-nav">
       <div className="container">
         <div className="row">
-          <nav className="navbar navbar-expand-md ">
+          <nav className="navbar navbar-expand-md">
             <div className="container-fluid">
-              <Link className="navbar-brand  text-dark" to="/">
+              <Link className="navbar-brand  text-dark fw-bold fs-4" to="/">
                 MERN Portfolio
               </Link>
               <button

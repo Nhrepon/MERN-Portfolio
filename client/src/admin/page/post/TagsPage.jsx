@@ -1,20 +1,16 @@
-
-import AddNewPostComponent from "../../component/post/AddNewPostComponent.jsx";
+import React from 'react';
 import DashboardLayout from "../../layout/DashboardLayout.jsx";
 
-const NewPostPage = () => {
+const TagsPage = () => {
     return (
         <DashboardLayout>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3>Add New Posts</h3>
+                        <h2>Tags</h2>
                         <hr />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
-                        <AddNewPostComponent/>
+                        <p>This page is under construction.</p>
+
                     </div>
                 </div>
             </div>
@@ -22,4 +18,4 @@ const NewPostPage = () => {
     );
 };
 
-export default NewPostPage;
+export default TagsPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FooterComponent = () => {
   return (
@@ -58,7 +58,10 @@ const FooterComponent = () => {
                     //value=""
                     required
                   />
-                  <button className="btn btn-outline-light bg-success" type="submit">
+                  <button
+                    className="btn btn-outline-light bg-success"
+                    type="submit"
+                  >
                     Subscribe
                   </button>
                 </form>
@@ -70,6 +73,9 @@ const FooterComponent = () => {
           <div className="col-12 text-center">
             <p>Copyright@2024 MERN E-commerce App</p>
           </div>
+          <button className="goto-top rounded-circle text-center text-success fw-bold fs-4 d-flex align-items-center justify-content-center shadow-sm overflow-hidden" title="Go to top">
+            <img src="/back-to-top.png" alt="back-to-top" className="w-100"></img>
+          </button>
         </div>
       </div>
     </div>

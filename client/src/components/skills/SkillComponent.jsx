@@ -45,7 +45,7 @@ const SkillComponent = () => {
           <ProgressBarComponent title="React" width="90%" innerBg="yellow" />
         </div>
       </div>
-      <div className="row my-5">
+      <div className="row my-5 gx-3 gy-3">
         <div className=" col-12 col-md-3">
           <SkillCardComponents
             iconClass="bi bi-check2-circle fs-1 text-danger"
