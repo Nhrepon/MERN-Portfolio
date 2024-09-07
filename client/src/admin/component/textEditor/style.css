@@ -1,0 +1,8 @@
+.quill .ql-editor{
+    height: 200px;
+}
+
+.quill .ql-editor img {
+    max-width: 100%;
+    width: 300px;
+}

@@ -1,9 +1,9 @@
+import { useState } from "react";
 import QuillTextEditor from "../textEditor/QuillTextEditor";
-import RichTextEditor from "../textEditor/RichTextEditor";
-import TextEditor from "../textEditor/TextEditor";
 
 
 const AddNewPostComponent = () => {
+
 
 
   return (
@@ -20,7 +20,8 @@ const AddNewPostComponent = () => {
 
                 <div className="form-group my-3">
                   <label>Description</label>
-                  <textarea className="form-control my-3" rows="8"></textarea>
+                  {/* <textarea className="form-control my-3" rows="8"></textarea> */}
+                  <QuillTextEditor />
                 </div>
                   
 
