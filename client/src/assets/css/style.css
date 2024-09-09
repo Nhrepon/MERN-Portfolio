@@ -1,5 +1,5 @@
 .body {
-  background-color: rgb(228, 255, 227);
+  background-color: rgb(241, 250, 241);
 }
 
 i {
@@ -29,9 +29,8 @@ i {
   background-size: cover;
 }
 .contact-bg-img {
-  background: url("/contact_bg.jpg") no-repeat center center fixed transparent;
+  background: url("/contact_bg.jpg") no-repeat center center fixed;
   background-size: cover;
-  object-fit: cover;
   /* 
     filter: blur(3px) grayscale(50%);
     background-image: url("../../../public/contact_bg.jpg");
