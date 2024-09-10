@@ -1,5 +1,6 @@
 const express=require('express');
 const UserController = require('../controller/UserController');
+const BlogPostController = require('../controller/BlogPostController');
 const AuthMiddleware = require('../middleware/AuthMiddleware');
 const router=express.Router();
 
@@ -15,7 +16,8 @@ router.post("/userProfileDelete/:id", AuthMiddleware, UserController.userProfile
 
 
 // Blog post router 
-router.post("", );
+router.get("/category", BlogPostController.category);
+router.post("/create-category", BlogPostController.createCategory);
 
 
 

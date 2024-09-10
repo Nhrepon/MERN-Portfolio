@@ -7,7 +7,7 @@ const AllPostPage = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h2>All Posts</h2>
+                        <h3 className="fs-4">All Posts</h3>
                         <hr />
                         <p>This page is under construction.</p>
 

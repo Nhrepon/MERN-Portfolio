@@ -7,7 +7,7 @@ const MediaPage = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h2>Media</h2>
+                        <h3 className="fs-4">Media</h3>
                         <hr />
                         <p>This page is under construction.</p>
 

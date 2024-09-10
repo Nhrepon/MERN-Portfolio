@@ -8,7 +8,7 @@ const NewPostPage = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3>Add New Posts</h3>
+                        <h3 className="fs-4">Add New Posts</h3>
                         <hr />
                     </div>
                 </div>
