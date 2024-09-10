@@ -49,7 +49,7 @@ const BlogListComponents = () => {
 
   return (
     <div className="container-fluid">
-      <div className="container">
+      <div className="container blog">
         <div className="row">
           <div className="col-12">
             <p>Total blogs: {data.length}</p>

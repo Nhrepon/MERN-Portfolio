@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUsComponent = () => {
     return (
         <div className="container-fluid">
-            <div className="container">
+            <div className="container about">
                 <div className="row py-5">
                     <div className="col-md-6">
                         <img src="/nhrepon.jpg" className="img-fluid p-4 home-nav-bg" alt="NHRepon" />

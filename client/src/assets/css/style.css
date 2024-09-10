@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-i {
+.about i, .blog i {
   margin-right: 8px;
 }
 
@@ -51,16 +51,20 @@ i {
   
 }
 .social-icon li{
-width: 50px;
-height: 50px;
+width: 40px;
+height: 40px;
 display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 50%;
-background-color: #198754;
+background-color: white;
 }
 .social-icon li:hover{
-  background-color: #ffffff;
+  background-color: #198754;
+  transition: all 0.5s ease-in-out;
+}
+.social-icon li:hover i{
+  color: white;
   transition: all 0.5s ease-in-out;
 }
 
@@ -217,7 +221,10 @@ background-color: #198754;
 
 .goto-top:hover {
   background: #198754;
-  color: yellow;
+  transition: all 0.3s ease-in-out;
+}
+.goto-top:hover svg{
+  fill: white;
   transition: all 0.3s ease-in-out;
 }
 
