@@ -71,7 +71,7 @@ const FooterComponent = () => {
         </div>
         <div className="row p-3">
           <div className="col-12 text-center">
-            <p>Copyright@2024 MERN E-commerce App</p>
+            <p>Copyright@2024 NHRepon.com</p>
           </div>
           <button className="goto-top rounded-circle text-center text-success fw-bold fs-4 d-flex align-items-center justify-content-center shadow-sm overflow-hidden" title="Go to top">
             <img src="/back-to-top.png" alt="back-to-top" className="w-100"></img>

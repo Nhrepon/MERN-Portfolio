@@ -9,10 +9,10 @@ const Feature = () => {
                     <h2 className='fs-1 fw-bold my-3 fw-bolder'>I'm <span className='text-success'>Nur Hossain</span></h2>
                     <h2 className='fw-bold fs-1 my-3'><span className='text-danger'>MERN</span> Stack Developer</h2>
                     <p className='fs-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, officiis.</p>
-                    <div className="d-flex align-items-center gap-2 feature-icon">
-                    <i class="bi bi-whatsapp"></i>
-                    <i class="bi bi-whatsapp"></i>
-                    <i class="bi bi-whatsapp"></i>
+                    <div>
+                        <ul className="social-icon d-flex gap-3">
+                            <li className="text-center text-warning fs-5 p-1"><i class="bi bi-whatsapp"></i></li>
+                        </ul>
                     </div>
                 </div>
                 <div className="col-md-6 text-center">

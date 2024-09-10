@@ -38,7 +38,7 @@ const TopNavigationBar = () => {
         $(window).scroll(function() {
             var scroll = $(window).scrollTop();
     
-            if (scroll >= 200) {
+            if (scroll >= 80) {
               topNavBg.removeClass('bg-transparent').addClass("bg-light");
               gotoTop.removeClass('d-none').addClass("d-flex");
               

@@ -1,7 +1,7 @@
 .skill-box{}
 .skill-title{}
 .skill-bar{
-    height: 22px;
+    height: 15px;
     width: 100%;
     background-color: rgba(53, 82, 60, 0.671);
     border-radius: 15px;
@@ -23,9 +23,10 @@
 .skill-tooltip{
     position:absolute;
     right:-14px;
-    top: -40px;
+    top: -30px;
     color:white;
-    padding:3px 8px;
+    padding:2px 5px;
+    font-size: 12px;
     border-radius: 5px;
     background:rgb(25 135 84);
     z-index:2;

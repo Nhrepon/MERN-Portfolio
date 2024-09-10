@@ -10,11 +10,11 @@ const AboutUsComponent = () => {
                     </div>
                     <div className="col-md-6">
                     <h4 className='hello fs-5'>About us</h4>
-                        <h2 className='fs-1 fw-bold'><span className='text-danger'>Failure</span>  Is The Condiment That Gives <span className='text-danger'>Success</span> </h2>
+                        <h2 className='fs-1 fw-bold'><span className='text-danger'>Failure</span>  Is The Condiment That Gives <span className='text-success'>Success</span> </h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, officiis.
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, officiis. dolor sit amet consectetur </p>
                         
-                        <button className="btn btn-primary">Download CV</button>
+                        <button className="btn btn-success">Download CV</button>
                         <div className="col-12 py-4">
                             <p className='fs-5'><i class="bi bi-person-circle"></i>Nur Hossain</p>
                             <p className='fs-5'><i class="bi bi-envelope-at"></i>nurhossainrepon7248@gmail.com</p>
