@@ -31,6 +31,23 @@ const BlogPostStore = create((set) => ({
             return ({ status: "error", message: error });
         }
     },
+    deleteCategory: async (id) => {
+        try {
+            const response = await axios.get(`/api/categoryDelete/${id}`);
+            return response.data["status"] === "success";
+        } catch (error) {
+            return ({ status: "error", message: error });
+        }
+    },
+    updateCategory: async (id, reqBody) => {
+        try {
+            reqBody._id = id;
+            const response = await axios.post("/api/updateCategory", reqBody);
+            return response.data["status"] === "success";
+        } catch (error) {
+            return ({ status: "error", message: error });
+        }
+    },
 
 
 

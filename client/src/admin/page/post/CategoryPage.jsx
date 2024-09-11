@@ -4,10 +4,10 @@ import Swal from "sweetalert2";
 import BlogPostStore from "../../store/BlogPostStore.js";
 
 
-const CategoryPage = () => {
-  const category = "Category name";
 
-    const {categoryList, getCategoryList, categoryForm, categoryFormOnChange, createCategory}=BlogPostStore();
+const CategoryPage = () => {
+
+    const {categoryList, getCategoryList, createCategory, deleteCategory, updateCategory}=BlogPostStore();
     useEffect(() => {
         (async()=>{
             await getCategoryList();
@@ -16,11 +16,15 @@ const CategoryPage = () => {
 
 
 
+
+
+  const addCategory = () => {
+    
     const sweetAlertInpurForm = {
       title: "Add Category",
       focusConfirm: false,
       html: `
-      <input value="${category}" onChange="${(e)=>{categoryFormOnChange('categoryName', e.target.value);}}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+      <input value="${category}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
       <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
       <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
     `,
@@ -35,9 +39,6 @@ const CategoryPage = () => {
         categoryImage: document.getElementById("categoryImage").value,
       }),
     };
-
-  const addCategory = () => {
-    
     const handleCategoryForm=async()=>{
       
       let sValue =await Swal.fire(sweetAlertInpurForm);
@@ -56,6 +57,66 @@ const CategoryPage = () => {
     };
     handleCategoryForm();
   };
+
+  const deleteItem = async (id) => {
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        await deleteCategory(id);
+        Swal.fire({title:"Deleted!", text: "Your file has been deleted successfully!", icon: "success", type:"success"});
+        await getCategoryList();
+      }
+    });
+  };
+
+
+  const editItem = async (item) => {
+    const sweetAlertInpurForm = {
+      title: "Update Category",
+      focusConfirm: false,
+      html: `
+      <input value="${item.categoryName}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+      <input value="${item.categoryDescription}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
+      <input value="${item.categoryImage}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
+    `,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Update",
+      cancelButtonText: "Cancel",
+      allowOutsideClick: false,
+      preConfirm: () => ({
+        categoryName: document.getElementById("categoryName").value,
+        categoryDescription: document.getElementById("categoryDescription").value,
+        categoryImage: document.getElementById("categoryImage").value,
+      }),
+    };
+    const handleCategoryForm=async()=>{
+      
+      let sValue =await Swal.fire(sweetAlertInpurForm);
+      let value = sValue.value || sValue.dismiss;
+      if(value.categoryName || value === "cancel"){
+        if(value !== "cancel"){
+          await updateCategory(item._id, value);
+          await getCategoryList();
+          await Swal.fire({ type: 'success', title: 'Category updated successfully!', icon: 'success' });
+        }
+      }else{
+        await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
+        handleCategoryForm();
+      }
+
+    };
+    handleCategoryForm();
+  };
+
+
 
   return (
     <DashboardLayout>
@@ -97,7 +158,7 @@ const CategoryPage = () => {
                   {categoryList!=null && categoryList.map((item, i) => {
                   return (
                     <>
-                    <tr key={i}>
+                    <tr key={i} className="align-middle">
                       <td>{i=i+1}</td>
                       <td>{item.categoryName}</td>
                       <td>{item.categoryDescription}</td>
@@ -110,10 +171,10 @@ const CategoryPage = () => {
                         />
                       </td>
                       <td className="text-center">
-                        <button className="btn fs-4 text-primary border-0">
+                        <button onClick={async()=>{await editItem(item)}} className="btn fs-4 text-primary border-0">
                           <i className="bi bi-pencil-square"></i>
                         </button>
-                        <button className="btn fs-4 text-danger border-0">
+                        <button onClick={async()=>{await deleteItem(item["_id"])}} className="btn fs-4 text-danger border-0">
                           <i className="bi bi-trash"></i>
                         </button>
                       </td>

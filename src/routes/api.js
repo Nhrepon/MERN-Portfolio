@@ -17,6 +17,9 @@ router.post("/userProfileDelete/:id", AuthMiddleware, UserController.userProfile
 
 // Blog post router 
 router.get("/category", BlogPostController.category);
+router.get("/categoryById", BlogPostController.categoryById);
+router.get("/categoryDelete/:id", BlogPostController.deleteCategory);
+router.post("/updateCategory", BlogPostController.updateCategory);
 router.post("/create-category", BlogPostController.createCategory);
 
 

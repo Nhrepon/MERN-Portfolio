@@ -12,6 +12,16 @@ exports.category = async(req, res)=>{
     }
 }
 
+exports.categoryById = async(req, res)=>{
+    try {
+        const {id} = req.params;
+        const data = await BlogPostCategoryModel.find({_id:id});
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"error", message:error});
+    }
+}
+
 exports.createCategory = async(req, res)=>{
     try {
         const reqBody = req.body;
@@ -23,6 +33,28 @@ exports.createCategory = async(req, res)=>{
         res.json({status:"error", message:error});
     }
 }
+
+exports.deleteCategory = async(req, res)=>{
+    try {
+        const {id} = req.params;
+        const data = await BlogPostCategoryModel.deleteOne({_id:id});
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"error", message:error});
+    }
+}
+
+
+exports.updateCategory = async(req, res)=>{
+    try {
+        const reqBody = req.body;
+        const data = await BlogPostCategoryModel.updateOne({_id:reqBody._id}, reqBody);
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"error", message:error});
+    }
+}
+
 
 exports.createBlogPost = async(req, res)=>{
     try {
