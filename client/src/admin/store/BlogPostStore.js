@@ -8,7 +8,7 @@ const BlogPostStore = create((set) => ({
         set((state) => ({
             categoryForm: {
                 ...state.categoryForm,
-                [name]: value,
+                [name]: value, 
             },
         }));
     },
@@ -19,6 +19,14 @@ const BlogPostStore = create((set) => ({
             set({ categoryList: response.data["data"] });
             set({ categoryForm: response.data["data"] });
 
+        } catch (error) {
+            return ({ status: "error", message: error });
+        }
+    },
+    createCategory: async (reqBody) => {
+        try {
+            const response = await axios.post("/api/create-category", reqBody);
+            return response.data["status"] === "success";
         } catch (error) {
             return ({ status: "error", message: error });
         }

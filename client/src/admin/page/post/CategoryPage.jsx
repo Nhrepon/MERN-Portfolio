@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import DashboardLayout from "../../layout/DashboardLayout.jsx";
 import Swal from "sweetalert2";
 import BlogPostStore from "../../store/BlogPostStore.js";
-import NewPostPage from './NewPostPage';
+
 
 const CategoryPage = () => {
+  const category = "Category name";
 
-
-    const {categoryList, getCategoryList, categoryForm, categoryFormOnChange}=BlogPostStore();
+    const {categoryList, getCategoryList, categoryForm, categoryFormOnChange, createCategory}=BlogPostStore();
     useEffect(() => {
         (async()=>{
             await getCategoryList();
@@ -16,35 +16,45 @@ const CategoryPage = () => {
 
 
 
-
-  const addCategory = () => {
-    Swal.fire({
+    const sweetAlertInpurForm = {
       title: "Add Category",
-      //input: 'text',
-      html:`
-        <input id="swal-input1" class="swal2-input">
-        <input id="swal-input2" class="swal2-input">
-        <input id="swal-input3" class="swal2-input">
-        `,
+      focusConfirm: false,
+      html: `
+      <input value="${category}" onChange="${(e)=>{categoryFormOnChange('categoryName', e.target.value);}}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+      <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
+      <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
+    `,
+      type: "warning",
       showCancelButton: true,
       confirmButtonText: "Add",
       cancelButtonText: "Cancel",
-      allowEnterKey:true,
-      inputValidator: () => {
-        let categoryName = document.getElementById("swal-input1").value;
-        if (categoryName == "") {
-          return "Field is required!";
+      allowOutsideClick: false,
+      preConfirm: () => ({
+        categoryName: document.getElementById("categoryName").value,
+        categoryDescription: document.getElementById("categoryDescription").value,
+        categoryImage: document.getElementById("categoryImage").value,
+      }),
+    };
+
+  const addCategory = () => {
+    
+    const handleCategoryForm=async()=>{
+      
+      let sValue =await Swal.fire(sweetAlertInpurForm);
+      let value = sValue.value || sValue.dismiss;
+      if(value.categoryName || value === "cancel"){
+        if(value !== "cancel"){
+          await createCategory(value);
+          await getCategoryList();
+          await Swal.fire({ type: 'success', title: 'Category added successfully!', icon: 'success' });
         }
-      },
-    }).then((result) => {
-        let categoryName = document.getElementById("swal-input1").value;
-        let categoryDescription = document.getElementById("swal-input2").value;
-        let categoryImage = document.getElementById("swal-input3").value;
-        
-      if (result.isConfirmed) {
-        Swal.fire("Added!", "Category added successfully.", "success");
+      }else{
+        await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
+        handleCategoryForm();
       }
-    });
+
+    };
+    handleCategoryForm();
   };
 
   return (
@@ -71,7 +81,7 @@ const CategoryPage = () => {
             <div className="row">
               <div className="col-12">
                 
-                <table className="table  table-striped">
+                <table className="table  table-striped border my-3">
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
@@ -95,7 +105,7 @@ const CategoryPage = () => {
                         <img
                           src={item.categoryImage}
                           className="img-fluid"
-                          style={{ width: "40px" }}
+                          style={{ width: "50px" }}
                           alt={item.categoryName}
                         />
                       </td>
