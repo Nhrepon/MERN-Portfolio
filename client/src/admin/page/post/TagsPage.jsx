@@ -5,38 +5,133 @@ import BlogPostStore from "../../store/BlogPostStore.js";
 
 const TagsPage = () => {
     
-    const {categoryList, getCategoryList}=BlogPostStore();
-    useEffect(() => {
-        (async()=>{
-            await getCategoryList();
-        })()
-    }, []);
+  const {categoryList, getCategoryList, createCategory, deleteCategory, updateCategory}=BlogPostStore();
+  useEffect(() => {
+      (async()=>{
+          await getCategoryList();
+      })()
+  }, []);
 
 
 
 
-  const addCategory = () => {
-    Swal.fire({
-      title: "Add Tags",
-      //input: 'text',
-      html:`<input id="swal-input1" class="swal2-input">
-        <input id="swal-input2" class="swal2-input">
-        <input id="swal-input3" class="swal2-input">`,
-      showCancelButton: true,
-      confirmButtonText: "Add",
-      cancelButtonText: "Cancel",
-      allowEnterKey:true,
-      inputValidator: (value) => {
-        if (!value) {
-          return "Field is required!";
+
+const addCategory = () => {
+  
+  const sweetAlertInputForm = {
+    title: "Add Category",
+    focusConfirm: false,
+    html: `
+    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
+    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
+  `,
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Add",
+    cancelButtonText: "Cancel",
+    allowOutsideClick: false,
+    preConfirm: () => ({
+      categoryName: document.getElementById("categoryName").value,
+      categoryDescription: document.getElementById("categoryDescription").value,
+      categoryImage: document.getElementById("categoryImage").value,
+      
+      /* cat: document.getElementById("categoryName").onchange = categoryList != null && categoryList.map((item)=>{
+        if(item.categoryName === document.getElementById("categoryName").value){
+          toast.error("Duplicate value found!");
         }
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Added!", "Tags added successfully.", "success");
-      }
-    });
+      }) */
+    }),
+
+    
   };
+  
+  const handleCategoryForm=async()=>{
+    
+    let sValue =await Swal.fire(sweetAlertInputForm);
+    let value = sValue.value || sValue.dismiss;
+    if(value.categoryName || value === "cancel"){
+      if(value !== "cancel"){
+        
+        const ucat=categoryList != null && categoryList.map((item)=>{item.categoryName === value.categoryName});
+        
+        if(ucat){
+          await Swal.fire({ type: 'Duplicate',title: 'Category name already exist!', icon: 'error' });
+          handleCategoryForm();
+        }else{
+
+          await createCategory(value);
+          await getCategoryList();
+          await Swal.fire({ type: 'success', title: 'Category added successfully!', icon: 'success' });
+        }
+      }
+    }else{
+      await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
+      handleCategoryForm();
+    }
+
+  };
+  handleCategoryForm();
+};
+
+const deleteItem = async (id) => {
+  await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+      await deleteCategory(id);
+      Swal.fire({title:"Deleted!", text: "Your file has been deleted successfully!", icon: "success", type:"success"});
+      await getCategoryList();
+    }
+  });
+};
+
+
+const editItem = async (item) => {
+  const sweetAlertInputForm = {
+    title: "Update Category",
+    focusConfirm: false,
+    html: `
+    <input value="${item.categoryName}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+    <input value="${item.categoryDescription}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
+    <input value="${item.categoryImage}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
+  `,
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Update",
+    cancelButtonText: "Cancel",
+    allowOutsideClick: false,
+    preConfirm: () => ({
+      categoryName: document.getElementById("categoryName").value,
+      categoryDescription: document.getElementById("categoryDescription").value,
+      categoryImage: document.getElementById("categoryImage").value,
+    }),
+  };
+  const handleCategoryForm=async()=>{
+    
+    let sValue =await Swal.fire(sweetAlertInputForm);
+    let value = sValue.value || sValue.dismiss;
+    if(value.categoryName || value === "cancel"){
+      if(value !== "cancel"){
+        await updateCategory(item._id, value);
+        await getCategoryList();
+        await Swal.fire({ type: 'success', title: 'Category updated successfully!', icon: 'success' });
+      }
+    }else{
+      await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
+      handleCategoryForm();
+    }
+
+  };
+  handleCategoryForm();
+};
+
 
   return (
     <DashboardLayout>
@@ -90,10 +185,10 @@ const TagsPage = () => {
                         />
                       </td>
                       <td className="text-center">
-                        <button className="btn fs-4 text-primary border-0">
+                        <button onClick={async()=>{await editItem(item)}} className="btn fs-4 text-primary border-0">
                           <i className="bi bi-pencil-square"></i>
                         </button>
-                        <button className="btn fs-4 text-danger border-0">
+                        <button onClick={async()=>{await deleteItem(item["_id"])}} className="btn fs-4 text-danger border-0">
                           <i className="bi bi-trash"></i>
                         </button>
                       </td>

@@ -19,7 +19,7 @@ const AdminSidebarNavigation = () => {
 
   return (
     <div>
-      <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 bg-light">
+      <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 bg-light admin-sidebar">
         <Link
           to="/dashboard"
           className="d-flex align-items-center justify-content-center nav-link link-dark"

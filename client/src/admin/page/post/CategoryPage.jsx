@@ -5,6 +5,7 @@ import BlogPostStore from "../../store/BlogPostStore.js";
 
 
 
+
 const CategoryPage = () => {
 
     const {categoryList, getCategoryList, createCategory, deleteCategory, updateCategory}=BlogPostStore();
@@ -20,11 +21,11 @@ const CategoryPage = () => {
 
   const addCategory = () => {
     
-    const sweetAlertInpurForm = {
+    const sweetAlertInputForm = {
       title: "Add Category",
       focusConfirm: false,
       html: `
-      <input value="${category}" style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
+      <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
       <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
       <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
     `,
@@ -37,17 +38,35 @@ const CategoryPage = () => {
         categoryName: document.getElementById("categoryName").value,
         categoryDescription: document.getElementById("categoryDescription").value,
         categoryImage: document.getElementById("categoryImage").value,
+        
+        /* cat: document.getElementById("categoryName").onchange = categoryList != null && categoryList.map((item)=>{
+          if(item.categoryName === document.getElementById("categoryName").value){
+            toast.error("Duplicate value found!");
+          }
+        }) */
       }),
+
+      
     };
+    
     const handleCategoryForm=async()=>{
       
-      let sValue =await Swal.fire(sweetAlertInpurForm);
+      let sValue =await Swal.fire(sweetAlertInputForm);
       let value = sValue.value || sValue.dismiss;
       if(value.categoryName || value === "cancel"){
         if(value !== "cancel"){
-          await createCategory(value);
-          await getCategoryList();
-          await Swal.fire({ type: 'success', title: 'Category added successfully!', icon: 'success' });
+          
+          const ucat=categoryList != null && categoryList.map((item)=>{item.categoryName === value.categoryName});
+          
+          if(ucat){
+            await Swal.fire({ type: 'Duplicate',title: 'Category name already exist!', icon: 'error' });
+            handleCategoryForm();
+          }else{
+
+            await createCategory(value);
+            await getCategoryList();
+            await Swal.fire({ type: 'success', title: 'Category added successfully!', icon: 'success' });
+          }
         }
       }else{
         await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
@@ -78,7 +97,7 @@ const CategoryPage = () => {
 
 
   const editItem = async (item) => {
-    const sweetAlertInpurForm = {
+    const sweetAlertInputForm = {
       title: "Update Category",
       focusConfirm: false,
       html: `
@@ -99,7 +118,7 @@ const CategoryPage = () => {
     };
     const handleCategoryForm=async()=>{
       
-      let sValue =await Swal.fire(sweetAlertInpurForm);
+      let sValue =await Swal.fire(sweetAlertInputForm);
       let value = sValue.value || sValue.dismiss;
       if(value.categoryName || value === "cancel"){
         if(value !== "cancel"){

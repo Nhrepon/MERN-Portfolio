@@ -2,6 +2,8 @@ import React from "react";
 import MasterLayout from "../../layout/MasterLayout.jsx";
 import AdminSidebarNavigation from "../AdminSidebarNavigation.jsx";
 
+import '../assets/css/style.css';
+
 const DashboardLayout = (props) => {
   return (
     <MasterLayout>
