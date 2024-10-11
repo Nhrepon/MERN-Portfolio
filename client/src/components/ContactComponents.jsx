@@ -79,7 +79,7 @@ const ContactComponents = () => {
             <button type="submit" className="btn btn-success w-25">Submit</button>
             </form>
           </div>
-          <div className=" col-12 col-md-4 p-0 mt-4 bg-success  contact-bg-img">
+          <div className=" col-12 col-md-4 p-0 mt-4 bg-success">
                 
                 <div className=" p-4">
                     <h2 className="fs-2 text-light fw-bold">Don't hesitate to send a message.</h2>

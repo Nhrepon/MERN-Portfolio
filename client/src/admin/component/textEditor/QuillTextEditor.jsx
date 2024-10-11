@@ -3,9 +3,11 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './style.css';
 
-const QuillTextEditor = () => {
-    const [value, setValue] = useState('Bangladesh');
-  
+const QuillTextEditor = ({onInputChange}) => {
+    const [value, setValue] = useState('');
+      
+    onInputChange(value);
+    
 
     const modules = {
       toolbar: [
@@ -17,6 +19,8 @@ const QuillTextEditor = () => {
           'underline', 
           'strike', 
           'blockquote',
+        ],
+          [
           { 'color': [] }, 
           { 'background': [] },
           { 'align': [] },

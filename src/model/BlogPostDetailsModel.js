@@ -5,5 +5,5 @@ const databaseSchema = mongoose.Schema({
   details: { type: String },
 }, {timestamps:true, versionKey: false});
 
-const BlogPostDetailsModel = ("blogPostDetails", databaseSchema);
+const BlogPostDetailsModel = mongoose.model("blogPostDetails", databaseSchema);
 module.exports = BlogPostDetailsModel;

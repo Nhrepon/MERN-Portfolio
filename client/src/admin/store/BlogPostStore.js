@@ -58,10 +58,17 @@ const BlogPostStore = create((set) => ({
 
 
 
-    blogPost: null,
-    blogPostForm: null,
-    blogPostFormValue: { title: "", content: "" },
-
+    blogPostForm: { title: "", thumbnail: "", tags: "", categoryId:"", details: ""},
+    blogPostFormOnChange: (name, value) => {
+        set((state) => ({
+            blogPostForm: {
+                ...state.blogPostForm,
+                [name]: value,
+            },
+        }));
+    },
+    
+    blogPostList: null,
     getBlogPost: async () => { 
         try {
             const response = await axios.get("/api/blogPostRead");
@@ -71,14 +78,7 @@ const BlogPostStore = create((set) => ({
         }
     },
 
-    blogPostFormOnChange: (name, value) => {
-        set((state) => ({
-            blogPostFormValue: {
-                ...state.blogPostFormValue,
-                [name]: value,
-            },
-        }));
-    },
+    
 
     blogPostUpdate: async (postBody) => {
         try {
@@ -91,12 +91,21 @@ const BlogPostStore = create((set) => ({
 
     blogPostCreate: async (postBody) => {
         try {
-            const response = await axios.post("/api/blogPostCreate", postBody);
+            const response = await axios.post("/api/createBlogPost", postBody);
             return response.data["status"] === "success";
         } catch (error) {
             console.log(error);
         }
     },
+
+
+
+
+
+
+
+
+
 }));
 
 export default BlogPostStore;

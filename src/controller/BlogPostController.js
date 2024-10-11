@@ -1,3 +1,4 @@
+const mongoose  = require("mongoose");
 const BlogPostCategoryModel = require("../model/BlogPostCategoryModel");
 const BlogPostDetailsModel = require("../model/BlogPostDetailsModel");
 const BlogPostModel = require("../model/BlogPostModel");
@@ -57,14 +58,23 @@ exports.updateCategory = async(req, res)=>{
 
 
 exports.createBlogPost = async(req, res)=>{
+    //const session = await mongoose.startSession();
     try {
         const reqBody = req.body;
+        const {userId}= req.headers;
         
-        const data = BlogPostModel.create({title: reqBody.title, thumbnail:reqBody.thumbnail});
-        reqBody.blogPostId = data[0]["_id"];
-        const postDetails = BlogPostDetailsModel.create(reqBody.details);
+        //await session.startTransaction();
+        const data =await BlogPostModel.create({title: reqBody.title, thumbnail:reqBody.thumbnail, tags: reqBody.tags, userId: userId, categoryId: reqBody.categoryId });
+        const blogId = data._id;
+        const postDetails =await BlogPostDetailsModel.create({blogPostId: blogId , details: reqBody.details});
+        //await session.commitTransaction();
+        //session.endSession();
+
+
         res.json({status:"success", data:data, details:postDetails});
     } catch (error) {
+        //await session.abortTransaction();
+        //session.endSession();
        res.json({status:"error", message:error});
     }
 }

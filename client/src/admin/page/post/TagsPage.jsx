@@ -16,15 +16,14 @@ const TagsPage = () => {
 
 
 
-const addCategory = () => {
+const addTags = () => {
   
   const sweetAlertInputForm = {
-    title: "Add Category",
+    title: "Add Tags",
     focusConfirm: false,
     html: `
-    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryName" type="text" placeholder="Category Name" /><br />
-    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryDescription" type="text" placeholder="Category Description" /><br />
-    <input style="width: -webkit-fill-available;" class="swal2-input" id="categoryImage" type="text" placeholder="Category Image" />
+    <input style="width: -webkit-fill-available;" class="swal2-input" id="tagsName" type="text" placeholder="Tags Name" /><br />
+    
   `,
     type: "warning",
     showCancelButton: true,
@@ -32,15 +31,7 @@ const addCategory = () => {
     cancelButtonText: "Cancel",
     allowOutsideClick: false,
     preConfirm: () => ({
-      categoryName: document.getElementById("categoryName").value,
-      categoryDescription: document.getElementById("categoryDescription").value,
-      categoryImage: document.getElementById("categoryImage").value,
-      
-      /* cat: document.getElementById("categoryName").onchange = categoryList != null && categoryList.map((item)=>{
-        if(item.categoryName === document.getElementById("categoryName").value){
-          toast.error("Duplicate value found!");
-        }
-      }) */
+      categoryName: document.getElementById("tagsName").value,
     }),
 
     
@@ -50,23 +41,23 @@ const addCategory = () => {
     
     let sValue =await Swal.fire(sweetAlertInputForm);
     let value = sValue.value || sValue.dismiss;
-    if(value.categoryName || value === "cancel"){
+    if(value.tagsName || value === "cancel"){
       if(value !== "cancel"){
         
-        const ucat=categoryList != null && categoryList.map((item)=>{item.categoryName === value.categoryName});
+        const ucat=categoryList != null && categoryList.map((item)=>{item.tagsName === value.tagsName});
         
         if(ucat){
-          await Swal.fire({ type: 'Duplicate',title: 'Category name already exist!', icon: 'error' });
+          await Swal.fire({ type: 'Duplicate',title: 'Tags name already exist!', icon: 'error' });
           handleCategoryForm();
         }else{
 
           await createCategory(value);
           await getCategoryList();
-          await Swal.fire({ type: 'success', title: 'Category added successfully!', icon: 'success' });
+          await Swal.fire({ type: 'success', title: 'Tags added successfully!', icon: 'success' });
         }
       }
     }else{
-      await Swal.fire({ type: 'error',title: 'Category name is required!', icon: 'error' });
+      await Swal.fire({ type: 'error',title: 'Tags name is required!', icon: 'error' });
       handleCategoryForm();
     }
 
@@ -146,7 +137,7 @@ const editItem = async (item) => {
                 <p className="float-start">All Tags</p>
                 <button
                   className="btn btn-primary float-end"
-                  onClick={addCategory}
+                  onClick={addTags}
                 >
                   Add tags
                 </button>
@@ -156,13 +147,11 @@ const editItem = async (item) => {
             <div className="row">
               <div className="col-12">
                 
-                <table className="table  table-striped">
+                <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Id</th>
+                      <th className="col-1" scope="col">Id</th>
                       <th scope="col">Tag Name</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Image</th>
                       <th className="col-2" scope="col">
                         Action
                       </th>
@@ -175,15 +164,6 @@ const editItem = async (item) => {
                     <tr key={i}>
                       <td>{i=i+1}</td>
                       <td>{item.categoryName}</td>
-                      <td>{item.categoryDescription}</td>
-                      <td>
-                        <img
-                          src={item.categoryImage}
-                          className="img-fluid"
-                          style={{ width: "40px" }}
-                          alt={item.categoryName}
-                        />
-                      </td>
                       <td className="text-center">
                         <button onClick={async()=>{await editItem(item)}} className="btn fs-4 text-primary border-0">
                           <i className="bi bi-pencil-square"></i>

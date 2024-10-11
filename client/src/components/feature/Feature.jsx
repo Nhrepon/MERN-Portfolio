@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
+import './feature.css';
 
 
 const Feature = () => {
@@ -35,8 +36,9 @@ const Feature = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="col-md-6 text-center">
-                    <div className="feature">
+                <div className="col-md-6">
+                    <div className="feature d-flex align-items-center justify-content-center">
+                        <img className='img-fluid rounded-circle feature-img' src="/repon.PNG" alt="nhrepon" />
                         <div className="feature-item">
                             <img className='img1' src="/react.svg" alt="React" />
                             <img className='img2' src="/node.svg" alt="React" />
@@ -46,7 +48,6 @@ const Feature = () => {
                             <img className='img6' src="/dotnet.svg" alt="React" />
                             <img className='img7' src="/android.svg" alt="React" />
                         </div>
-                        <img className='img-fluid rounded-circle m-5 feature-img' src="/repon.PNG" alt="nhrepon" />
                     </div>
                 </div>
             </div>

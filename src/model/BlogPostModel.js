@@ -6,6 +6,7 @@ const databaseSchema = mongoose.Schema(
     thumbnail: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, require: true },
     categoryId: { type: mongoose.Schema.Types.ObjectId, require: true },
+    tags: {type: String}
   },
   { timestamps: true, versionKey: false }
 );

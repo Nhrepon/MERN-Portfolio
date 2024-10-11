@@ -15,6 +15,8 @@ exports.decodeToken=(token)=>{
   try{
     const key = "1234-abcd";
     const verify = jwt.verify(token, key);
+    Headers.userId=verify.userId;
+    Headers.email = verify.email;
     return verify;
   }
   catch (e) {

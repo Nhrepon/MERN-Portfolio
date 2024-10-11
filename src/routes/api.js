@@ -15,7 +15,7 @@ router.post("/userProfileUpdate", AuthMiddleware, UserController.userProfileUpda
 router.post("/userProfileDelete/:id", AuthMiddleware, UserController.userProfileDelete);
 
 
-// Blog post router 
+// Blog post category router 
 router.get("/category", BlogPostController.category);
 router.get("/categoryById", BlogPostController.categoryById);
 router.get("/categoryDelete/:id", BlogPostController.deleteCategory);
@@ -24,6 +24,8 @@ router.post("/create-category", BlogPostController.createCategory);
 
 
 
+//Blog post router
+router.post("/createBlogPost", AuthMiddleware, BlogPostController.createBlogPost);
 
 
 

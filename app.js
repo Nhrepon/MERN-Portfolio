@@ -17,11 +17,28 @@ dotenv.config({ path: "./config.env" });
 
 // Security middleware implement
 app.use(cors());
-app.use(helmet());
+//app.use(helmet());
 app.use(hpp());
 app.use(xss());
 app.use(mongoSanitize());
 app.use(cookieParser());
+
+
+
+
+// Allow img from other src
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "https://thereadersea.com/", "https://usabilitydesigns.com/","https://talent-outsourcing.com/", "data:"],
+      },
+    },
+  }),
+);
+
+
 
 // Req rate limiting
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30000 });
