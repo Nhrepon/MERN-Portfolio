@@ -81,6 +81,25 @@ exports.createBlogPost = async(req, res)=>{
 
 
 
+exports.deleteBlogPost = async(req, res)=>{
+    //const session = await mongoose.startSession();
+    try {
+        const {id} = req.params;
+        const data = await BlogPostModel.deleteOne({_id:id});
+        const postDetails =await BlogPostDetailsModel.deleteOne({blogPostId:id});
+
+
+        res.json({status:"success", data:data, details: postDetails});
+        
+        
+    } catch (error) {
+        
+       res.json({status:"error", message:error});
+    }
+}
+
+
+
 exports.blogList = async(req, res)=>{
     try {
         const joinWithCategory = {$lookup:{

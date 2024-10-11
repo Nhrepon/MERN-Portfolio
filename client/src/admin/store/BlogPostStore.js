@@ -80,14 +80,6 @@ const BlogPostStore = create((set) => ({
 
     
 
-    blogPostUpdate: async (postBody) => {
-        try {
-            const response = await axios.post("/api/blogPostUpdate", postBody);
-            return response.data["status"] === "success";
-        } catch (error) {
-            console.log(error);
-        }
-    },
 
     blogPostCreate: async (postBody) => {
         try {
@@ -97,6 +89,26 @@ const BlogPostStore = create((set) => ({
             console.log(error);
         }
     },
+
+    blogPostUpdate: async (postBody) => {
+        try {
+            const response = await axios.post("/api/blogPostUpdate", postBody);
+            return response.data["status"] === "success";
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    
+    
+
+    blogPostDelete: async (id) => {
+        try {
+            const response = await axios.get(`/api/deleteBlogPost/${id}`);
+            return response.data["status"] === "success";
+        } catch (error) {
+            console.log(error);
+        }
+    },    
 
 
 

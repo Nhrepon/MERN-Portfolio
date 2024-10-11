@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import BlogPostStore from '../../store/BlogPostStore';
+import toast from 'react-hot-toast';
 
 const AllPostComponent = () => {
 
-    const {getBlogPost, blogPostList} = BlogPostStore();
+    const {getBlogPost, blogPostList, blogPostDelete} = BlogPostStore();
 
     useEffect(()=>{
         (async()=>{
@@ -14,7 +15,14 @@ const AllPostComponent = () => {
 
 
     const editItem=()=>{}
-    const deleteItem=(id)=>{}
+    const deleteItem=async(id)=>{
+        const res=await blogPostDelete(id);
+        
+        if(res){
+            toast.success("Blog post deleted successfully!");
+        }
+        await getBlogPost();
+    }
 
 
 
