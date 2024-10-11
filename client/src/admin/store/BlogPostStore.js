@@ -58,7 +58,7 @@ const BlogPostStore = create((set) => ({
 
 
 
-    blogPostForm: { title: "", thumbnail: "", tags: "", categoryId:"", details: ""},
+    blogPostForm: { title: "", thumbnail: "", tags: "", categoryId:"", url:"", details: ""},
     blogPostFormOnChange: (name, value) => {
         set((state) => ({
             blogPostForm: {
@@ -71,8 +71,8 @@ const BlogPostStore = create((set) => ({
     blogPostList: null,
     getBlogPost: async () => { 
         try {
-            const response = await axios.get("/api/blogPostRead");
-            set({ blogPost: response.data["blogPost"] });
+            const response = await axios.get("/api/blogList");
+            set({ blogPostList: response.data["data"] });
         } catch (error) {
             console.log(error);
         }

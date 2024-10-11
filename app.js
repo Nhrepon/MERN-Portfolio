@@ -11,6 +11,29 @@ const mongoSanitize = require("express-mongo-sanitize");
 const rateLimit = require("express-rate-limit");
 const cookieParser = require('cookie-parser');
 
+// File uploading process
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    return cb(null, './public');
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}-${file.originalname}`);
+  }
+ });
+
+ const upload = multer({ storage: storage });
+ // Route to handle single file upload
+ app.post('/upload', upload.single('file'), (req, res) => {
+  
+  res.json({data: req.file , message: 'Single file uploaded successfully!' });
+ });
+
+
+
+
+
+
 // Environment variable import and implement
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });

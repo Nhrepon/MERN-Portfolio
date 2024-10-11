@@ -64,7 +64,7 @@ exports.createBlogPost = async(req, res)=>{
         const {userId}= req.headers;
         
         //await session.startTransaction();
-        const data =await BlogPostModel.create({title: reqBody.title, thumbnail:reqBody.thumbnail, tags: reqBody.tags, userId: userId, categoryId: reqBody.categoryId });
+        const data =await BlogPostModel.create({title: reqBody.title, thumbnail:reqBody.thumbnail, tags: reqBody.tags, userId: userId, categoryId: reqBody.categoryId, url: reqBody.url });
         const blogId = data._id;
         const postDetails =await BlogPostDetailsModel.create({blogPostId: blogId , details: reqBody.details});
         //await session.commitTransaction();
@@ -76,5 +76,31 @@ exports.createBlogPost = async(req, res)=>{
         //await session.abortTransaction();
         //session.endSession();
        res.json({status:"error", message:error});
+    }
+}
+
+
+
+exports.blogList = async(req, res)=>{
+    try {
+        const joinWithCategory = {$lookup:{
+            from:"blogpostcategories",
+            localField:"categoryId",
+            foreignField:"_id",
+            as:"category"
+        }}
+        const unwindCategory = {$unwind:"$category"}
+        const projection = {$project:{
+            'userId':0,
+            
+        }}
+        const data = await BlogPostModel.aggregate([
+            joinWithCategory,
+            unwindCategory,
+            projection
+        ]);
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardLayout from '../../layout/DashboardLayout';
+import AllPostComponent from '../../component/post/AllPostComponent';
 
 const AllPostPage = () => {
     return (
@@ -9,7 +10,8 @@ const AllPostPage = () => {
                     <div className="col-12">
                         <h3 className="fs-4">All Posts</h3>
                         <hr />
-                        <p>This page is under construction.</p>
+                        
+                        <AllPostComponent/>
 
                     </div>
                 </div>

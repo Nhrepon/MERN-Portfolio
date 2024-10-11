@@ -3,6 +3,8 @@ import QuillTextEditor from "../textEditor/QuillTextEditor";
 import BlogPostStore from "../../store/BlogPostStore";
 import { toast } from 'react-hot-toast';
 import './style.css';
+import ValidationHelper from "../../../utility/ValidationHelper";
+import axios from "axios";
 
 
 
@@ -10,9 +12,11 @@ const AddNewPostComponent = () => {
 
   const {categoryList, getCategoryList, blogPostCreate, blogPostFormOnChange, blogPostForm} = BlogPostStore();
 
+  blogPostForm.url = blogPostForm.title.trim().replace(/\s+/g, " ").toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+
   const [blogDetails, setBlogDetails]=useState("");
 
-  const [tags, setTags]=useState(["React", "MongoDB", "Node js", "Express js"]);
+  const [tags, setTags]=useState(["React"]);
   const addTags = (e) =>{
     
     if (e.key === "Enter" && e.target.value != "" || e.key === "," && e.target.value != "") {
@@ -31,17 +35,26 @@ const AddNewPostComponent = () => {
   }
 
 
+
+
   const blogSubmit = async ()=>{
+    
     blogPostForm.tags = tags.toString();
     blogPostForm.details = blogDetails;
     blogPostForm.thumbnail = "thumb";
     
-    const post = await blogPostCreate(blogPostForm);
+    if(ValidationHelper.IsEmpty(blogPostForm.title)){
+      toast.error("Title should not be empty!");
+    }else{
+      const post = await blogPostCreate(blogPostForm);
     if(post){
       toast.success("Post create success!");
     }else{
       toast.error("failed");
     }
+    }
+
+    
   }
 
 
@@ -55,6 +68,23 @@ const AddNewPostComponent = () => {
 
 
 
+const {file, setFile} = useState();
+
+const uploadFile= async()=>{
+  
+  try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await axios.post("http://localhost:5000/upload", formData);
+
+      console.log(response.data);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
+
+
 
 
   return (
@@ -64,12 +94,13 @@ const AddNewPostComponent = () => {
           <div className="row">
             <div className="col-12">
               <div>
-                <div className="form-group my-3">
-                  <label>Post Title</label>
-                  <input value={blogPostForm.title} onChange={(e)=>{blogPostFormOnChange("title", e.target.value)}} type="text" className="form-control my-2" />
-                </div>
                 <div className="row">
                   <div className="col-8">
+                    <div className="form-group my-3">
+                      <label>Post Title</label>
+                      <input value={blogPostForm.title} onChange={(e)=>{blogPostFormOnChange("title", e.target.value);}} type="text" className="form-control my-2" />
+                    </div>
+
                     <div className="form-group my-3">
                       <label>Description</label>
                       
@@ -78,6 +109,11 @@ const AddNewPostComponent = () => {
                     </div>
                   </div>
                   <div className="col-4">
+                    <div className="form-group my-3">
+                      <label>Post url</label>
+                      <input value={blogPostForm.url} onChange={(e)=>{blogPostFormOnChange("url",e.target.value)}} type="text" className="form-control my-2" />
+                    </div>
+                
                     <div className="form-group my-3">
                       <label>Category</label>
                       <select className="form-select my-2" value={blogPostForm.categoryId} onChange={(e)=>{blogPostFormOnChange("categoryId", e.target.value)}} >
@@ -103,11 +139,14 @@ const AddNewPostComponent = () => {
                     </div>
 
                     <div className="form-group my-3 file-upload">
-                      <label>Thumbnail</label>
-                      <input type="file" accept="image/*" className="form-control my-2" />
+                      
+                        <label>Thumbnail</label>
+                        <input onChange={(e)=>{setFile(e.tags.file[0])}} type="file" accept="image/*" className="form-control my-2" />
+                      
                       <p>Select an image</p>
-                      <img src="/nhrepon.jpg" alt="" className="w-100"/>
+                      <img src={file} alt="" className="w-50"/>
                     </div>
+                    <button onClick={uploadFile} type="submit">upload</button>
                   </div>
                 </div>
 

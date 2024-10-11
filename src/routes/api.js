@@ -6,6 +6,7 @@ const router=express.Router();
 
 
 
+
 router.post("/userRegistration",UserController.userRegistration);
 router.post("/userLogin",UserController.userLogin);
 router.post("/userLogout",UserController.userLogout);
@@ -26,6 +27,7 @@ router.post("/create-category", BlogPostController.createCategory);
 
 //Blog post router
 router.post("/createBlogPost", AuthMiddleware, BlogPostController.createBlogPost);
+router.get("/blogList", BlogPostController.blogList);
 
 
 
