@@ -2,6 +2,7 @@
 import PortfolioCardComponents from "./PortfolioCardComponents";
 
 const PortfolioComponents = () => {
+
     const data = [
         {
             id: 1,

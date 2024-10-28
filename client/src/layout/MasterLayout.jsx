@@ -1,6 +1,6 @@
 import React from 'react';
-import TopNavigationBar from '../components/TopNavigationBar';
-import FooterComponent from '../components/FooterComponent';
+import TopNavigationBar from '../components/navigation/TopNavigationBar.jsx';
+import FooterComponent from '../components/footer/FooterComponent.jsx';
 import {Toaster} from 'react-hot-toast';
 
 

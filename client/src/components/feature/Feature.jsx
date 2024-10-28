@@ -27,33 +27,22 @@ const Feature = () => {
                         style={{fontSize: '2em', display: 'inline-block'}}
                         repeat={Infinity}
                     />
-                    <p className='fs-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, officiis.</p>
+                    <p className='fs-4'>Full stack web application developer using React js, Node js, Express js and MongoDB.</p>
                     <div>
                         <ul className="social-icon d-flex gap-3 list-unstyled fs-4">
-                            <li className="rounded-circle"><Link className="nav-link" to="#"> <i
-                                class="bi bi-whatsapp "></i></Link></li>
-                            <li className="rounded-circle"><Link className="nav-link" to="#"> <i
-                                class="bi bi-facebook "></i></Link></li>
-                            <li className="rounded-circle"><Link className="nav-link" to="#"> <i
-                                class="bi bi-linkedin "></i></Link></li>
-                            <li className="rounded-circle"><Link className="nav-link" to="#"> <i
-                                class="bi bi-github "></i></Link></li>
+                            <li className="rounded-circle"><Link className="nav-link" to="https://wa.me/+8801829938427" target="_blank"> <i
+                                className="bi bi-whatsapp "></i></Link></li>
+                            <li className="rounded-circle"><Link className="nav-link" to="https://facebook.com/nurhossain.repon.501" target="_blank"> <i
+                                className="bi bi-facebook "></i></Link></li>
+                            <li className="rounded-circle"><Link className="nav-link" to="https://linkedin.com/in/nhrepon" target="_blank"> <i
+                                className="bi bi-linkedin "></i></Link></li>
+                            <li className="rounded-circle"><Link className="nav-link" to="https://github.com/nhrepon" target="_blank"> <i
+                                className="bi bi-github "></i></Link></li>
                         </ul>
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="feature d-flex align-items-center justify-content-center">
-                        <img className='img-fluid rounded-circle feature-img' src="/repon.PNG" alt="nhrepon"/>
-                        <div className="feature-item">
-                            <img className='img1' src="/react.svg" alt="React"/>
-                            <img className='img2' src="/node.svg" alt="React"/>
-                            <img className='img3' src="/mongodb.svg" alt="React"/>
-                            <img className='img4' src="/laravel.svg" alt="React"/>
-                            <img className='img5' src="/flutter.svg" alt="React"/>
-                            <img className='img6' src="/dotnet.svg" alt="React"/>
-                            <img className='img7' src="/android.svg" alt="React"/>
-                        </div>
-                    </div>
+                    <img src="/nhrepon.jpg" className="img-fluid p-4 home-nav-bg" alt="NHRepon"/>
                 </div>
             </div>
         </div>
