@@ -13,61 +13,53 @@ import ContactComponents from "../components/ContactComponents";
 const HomePage = () => {
 
 
+    return (
+        <HomeLayout>
+            <AboutUsComponent/>
+            <SkillComponent/>
+            <ServicesComponents/>
 
 
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h1 className="fs-1 fw-bold mt-5 text-center">Portfolio</h1>
+                        <hr/>
+                    </div>
+                </div>
+                <PortfolioComponents/>
+            </div>
 
 
+            <ReviewComponents/>
 
 
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h2 className="fs-1 fw-bold text-center mt-5">Latest Blogs</h2>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
 
 
-  return (
-    <HomeLayout>
-      <AboutUsComponent />
-      <SkillComponent />
-      <ServicesComponents />
+            <BlogListComponents/>
 
 
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <h1 className="fs-1 fw-bold mt-5 text-center">Portfolio</h1>
-            <hr />
-          </div>
-        </div>
-        <PortfolioComponents />
-      </div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h2 className="fs-1 fw-bold text-center mt-5">Contact Now</h2>
+                        <hr/>
+                    </div>
+                </div>
+                <ContactComponents/>
+            </div>
 
 
-      <ReviewComponents />
-
-
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="fs-1 fw-bold text-center mt-5">Latest Blogs</h2>
-            <hr />
-          </div>
-        </div>
-      </div>
-
-
-      <BlogListComponents />
-
-
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="fs-1 fw-bold text-center mt-5">Contact Now</h2>
-            <hr />
-          </div>
-        </div>
-        <ContactComponents />
-      </div>
-
-
-    </HomeLayout>
-  );
+        </HomeLayout>
+    );
 };
 
 export default HomePage;
