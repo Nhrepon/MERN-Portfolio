@@ -19,7 +19,6 @@ const HomePage = () => {
             <SkillComponent/>
             <ServicesComponents/>
 
-
             <div className="container">
                 <div className="row">
                     <div className="col-12">
