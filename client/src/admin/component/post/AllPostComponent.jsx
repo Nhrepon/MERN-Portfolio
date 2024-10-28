@@ -14,7 +14,9 @@ const AllPostComponent = () => {
 
 
 
-    const editItem=()=>{}
+    const editItem= async (item)=>{
+        alert(item.details['details'])
+    }
     const deleteItem=async(id)=>{
         const res=await blogPostDelete(id);
         

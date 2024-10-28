@@ -102,18 +102,30 @@ exports.deleteBlogPost = async(req, res)=>{
 
 exports.blogList = async(req, res)=>{
     try {
-        const joinWithCategory = {$lookup:{
-            from:"blogpostcategories",
-            localField:"categoryId",
-            foreignField:"_id",
-            as:"category"
+        const joinWithDetails = {$lookup:{
+            from:"blogpostdetails",
+            localField:"_id",
+            foreignField:"blogPostId",
+            as:"details"
         }}
+        const unwindDetails = {$unwind:"$details"}
+
+        const joinWithCategory = {$lookup:{
+                from:"blogpostcategories",
+                localField:"categoryId",
+                foreignField:"_id",
+                as:"category"
+            }}
         const unwindCategory = {$unwind:"$category"}
+
+
         const projection = {$project:{
             'userId':0,
             
         }}
         const data = await BlogPostModel.aggregate([
+            joinWithDetails,
+            unwindDetails,
             joinWithCategory,
             unwindCategory,
             projection
