@@ -57,8 +57,8 @@ const ContactComponents = () => {
                             </span>
                         </div>
 
-                        <div className="mb-3">
-                            <textarea className="form-control" id="message" rows="5" placeholder="Message"/>
+                        <div className="mb-3 input-group shadow-sm">
+                            <textarea className="form-control px-4 py-3 border-0" id="message" rows="5" placeholder="Message"/>
                         </div>
 
                         <button onClick={sendMessage} type="submit" className="btn btn-success w-25">Submit</button>
