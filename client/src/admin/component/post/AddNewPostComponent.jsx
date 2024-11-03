@@ -41,7 +41,7 @@ const AddNewPostComponent = () => {
     
     blogPostForm.tags = tags.toString();
     blogPostForm.details = blogDetails;
-    blogPostForm.thumbnail = "thumb";
+    blogPostForm.thumbnail = "/exercise.jpg";
     
     if(ValidationHelper.IsEmpty(blogPostForm.title)){
       toast.error("Title should not be empty!");

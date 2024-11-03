@@ -48,8 +48,8 @@ const AllPostComponent = () => {
                                 <>
                                     <tr>
                                         <td>{i+1}</td>
-                                        <td className='text-nowrap overflow-hidden'>{item.title}</td>
-                                        <td className='text-nowrap overflow-hidden'>{item.url}</td>
+                                        <td className='text-wrap overflow-hidden'>{item.title}</td>
+                                        <td className=' overflow-hidden'>{item.url}</td>
                                         <td className=''>{item.category['categoryName']}</td>
                                         <td className=''>{item.tags}</td>
                                         <td className="text-center col-2 d-flex">
