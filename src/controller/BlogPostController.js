@@ -128,7 +128,8 @@ exports.blogList = async(req, res)=>{
             unwindDetails,
             joinWithCategory,
             unwindCategory,
-            projection
+            projection,
+            { $sort : { updatedAt : -1 } }
         ]);
         res.json({status:"success", data:data});
     } catch (error) {

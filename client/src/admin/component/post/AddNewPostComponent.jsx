@@ -12,7 +12,7 @@ const AddNewPostComponent = () => {
 
   const {categoryList, getCategoryList, blogPostCreate, blogPostFormOnChange, blogPostForm} = BlogPostStore();
 
-  blogPostForm.url = blogPostForm.title.trim().replace(/[^a-zA-Z0-9-]/g, '').split("-").join(" ").replace(/\s+/g, '-').toLowerCase();
+  blogPostForm.url = blogPostForm.title.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
 
   const [blogDetails, setBlogDetails]=useState("");
 
