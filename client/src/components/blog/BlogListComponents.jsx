@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import BlogPostStore from "../../admin/store/BlogPostStore.js";
-import parse from "html-react-parser";
+
 
 
 
@@ -30,16 +30,16 @@ const BlogListComponents = () => {
                         blogPostList !== null && blogPostList.map((item, i) => {
                         return (
                             <>
-                                <div className="col-md-4">
+                                <div className="col-md-6 col-lg-4">
                                     <div className="card shadow-sm mb-4 overflow-hidden" key={i}>
                                         <img className="zoom card-img" src={item.thumbnail}/>
                                         <div className="card-body">
-                                            <div className="card-text my-2">
+                                            <div className="card-text my-2 d-flex justify-content-between">
                                                 <span className="me-4 text-success">
-                                                  <i className="bi bi-person-circle"></i>By: Nur Hossain
+                                                  <i className="bi bi-person-circle"></i>By: {item.user['userName']}
                                                 </span>
                                                 <span className="text-success">
-                                                    <i className="bi bi-tag"></i>MERN
+                                                    <i className="bi bi-tag"></i>{item.category["categoryName"]}
                                                 </span>
                                             </div>
                                             <Link className="nav-link" to={"/blog/"+item.url}>
@@ -47,11 +47,19 @@ const BlogListComponents = () => {
                                             </Link>
                                             {/*<p className="card-text">{parse(item.details['details'])}</p>*/}
                                             <div className="card-text my-2 d-flex justify-content-between">
-                                            <span className="me-4 text-success">
-                                              <i className="bi bi-calendar"></i>
-                                              05 August 2024
-                                            </span>
-                                                <span className="text-success"><Link className="nav-link" to={item.url}>Read more</Link></span>
+                                                <span className="me-4 text-success">
+                                                  <i className="bi bi-calendar"></i>
+                                                    {
+                                                        new Date(item.createdAt).toLocaleDateString('en-GB', {
+                                                            day: '2-digit',
+                                                            month: 'long',
+                                                            year: 'numeric'
+                                                        })
+                                                    }
+                                                </span>
+                                                <span className="text-success">
+                                                    <Link className="nav-link" to={item.url}>Read more</Link>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

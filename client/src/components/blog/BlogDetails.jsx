@@ -9,6 +9,9 @@ const BlogDetails = () => {
     const {url} = useParams();
 
     const {blogPostList} = BlogPostStore();
+
+
+
     const details = blogPostList?.find(blogPostList => blogPostList.url === url);
 
 
@@ -18,9 +21,29 @@ const BlogDetails = () => {
             <div className="container">
                 <div className="row">
                     <div className="blogDetails col-12">
-                        <p className="py-2">{sitename + " " + window.location.pathname.split("/").join(" > ")}</p>
-                        <h2 className="my-5 fw-bold fs-2 text-center mx-auto col-12 col-md-8">{details.title}</h2>
-                        <div className="d-flex my-3 ">
+                        <span className="mt-5 py-3 small">{sitename + " " + window.location.pathname.split("/").join(" > ")}</span>
+                        <h2 className="mt-5 fw-bold fs-2 text-center mx-auto col-12 col-md-8">{details.title}</h2>
+                        <div className="text-center mx-auto">
+                            <span className="me-4">
+                                <i className="bi bi-person-circle"> </i> {details.user['userName']}
+                            </span>
+                            <span className="me-4">
+                                <i className="bi bi-calendar"> </i>
+                                {
+                                    new Date(details.createdAt).toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    })
+                                }
+                            </span>
+                            <span>
+                                <i className="bi bi-tag"> </i> {details.category["categoryName"]}
+                            </span>
+
+
+                        </div>
+                        <div className="d-flex my-5 ">
                             <img className="rounded mx-auto col-12 col-md-6" src={details.thumbnail}
                                  alt={details.title}/>
                         </div>

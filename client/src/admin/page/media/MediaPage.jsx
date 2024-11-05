@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardLayout from '../../layout/DashboardLayout';
+import ImageUpload from "../../component/media/ImageUpload.jsx";
 
 const MediaPage = () => {
     return (
@@ -11,6 +12,7 @@ const MediaPage = () => {
                         <hr />
                         <p>This page is under construction.</p>
 
+                        <ImageUpload/>
                     </div>
                 </div>
             </div>

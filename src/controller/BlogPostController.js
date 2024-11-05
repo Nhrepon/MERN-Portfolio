@@ -118,16 +118,34 @@ exports.blogList = async(req, res)=>{
             }}
         const unwindCategory = {$unwind:"$category"}
 
+        const joinWithUser = {$lookup:{
+                from:"profiles",
+                localField:"userId",
+                foreignField:"userId",
+                as:"user"
+            }}
+        const unwindUser = {$unwind:"$user"}
 
         const projection = {$project:{
-            'userId':0,
-            
+            'title':1,
+            'thumbnail':1,
+            'tags':1,
+            'url':1,
+            'createdAt':1,
+            'details.details':1,
+            'category.categoryName':1,
+            'category.categoryDescription':1,
+            'category.categoryImage':1,
+            'user.userName':1,
+
         }}
         const data = await BlogPostModel.aggregate([
             joinWithDetails,
             unwindDetails,
             joinWithCategory,
             unwindCategory,
+            joinWithUser,
+            unwindUser,
             projection,
             { $sort : { updatedAt : -1 } }
         ]);
