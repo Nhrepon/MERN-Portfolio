@@ -4,6 +4,7 @@ import { isLogin } from "../../utility/Utility.js";
 import userStore from "../../store/UserStore.js";
 import SubmitButton from "../users/SubmitButton.jsx";
 import $ from "jquery";
+import {sitename} from "../../config.js";
 
 const TopNavigationBar = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const TopNavigationBar = () => {
           <nav className="navbar navbar-expand-md">
             <div className="container-fluid">
               <Link className="navbar-brand  text-dark fw-bold fs-4" to="/">
-                MERN Portfolio
+                {sitename}
               </Link>
               <button
                 className="navbar-toggler"

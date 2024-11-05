@@ -42,10 +42,10 @@ const BlogListComponents = () => {
                                                     <i className="bi bi-tag"></i>MERN
                                                 </span>
                                             </div>
-                                            <Link className="nav-link" to={item.url}>
+                                            <Link className="nav-link" to={"/blog/"+item.url}>
                                                 <h3 className=" card-title fs-5">{item.title}</h3>
                                             </Link>
-                                            <p className="card-text">{parse(item.details['details'])}</p>
+                                            {/*<p className="card-text">{parse(item.details['details'])}</p>*/}
                                             <div className="card-text my-2 d-flex justify-content-between">
                                             <span className="me-4 text-success">
                                               <i className="bi bi-calendar"></i>

@@ -135,3 +135,4 @@ exports.blogList = async(req, res)=>{
         res.json({status:"failed", message:error});
     }
 }
+

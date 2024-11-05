@@ -11,11 +11,8 @@ const BlogPage = () => {
                         <div className="col-12 text-center mt-5">
                             <h2>All Blogs</h2>
                             <hr />
-                            
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
             <BlogListComponents/>

@@ -1,10 +1,18 @@
 import React from 'react';
+import MasterLayout from "../layout/MasterLayout.jsx";
+import BlogDetails from "../components/blog/BlogDetails.jsx";
+
+
 
 const BlogDetailsPage = () => {
+
+
     return (
-        <div>
-            
-        </div>
+        <MasterLayout>
+            <div className="container-fluid">
+                <BlogDetails/>
+            </div>
+        </MasterLayout>
     );
 };
 

@@ -16,6 +16,7 @@ import MediaPage from './admin/page/media/MediaPage.jsx';
 import AllPostPage from './admin/page/post/AllPostPage.jsx';
 import CategoryPage from './admin/page/post/CategoryPage.jsx';
 import TagsPage from './admin/page/post/TagsPage.jsx';
+import BlogDetailsPage from "./page/BlogDetailsPage.jsx";
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/registration" element={<RegistrationPage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/blog" element={<BlogPage/>} />
+            <Route path="/blog/:url" element={<BlogDetailsPage/>} />
             <Route path="/projects" element={<ProjectPage/>} />
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/contact" element={<ContactPage/>} />
@@ -65,6 +67,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage/>}/>
 
             <Route path="/blog" element={<BlogPage/>}/>
+            <Route path="/blog/:url" element={<BlogDetailsPage/>} />
             <Route path="/projects" element={<ProjectPage/>}/>
             <Route path="/about" element={<AboutPage/>}/>
             <Route path="/contact" element={<ContactPage/>}/>

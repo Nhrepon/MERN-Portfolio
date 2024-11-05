@@ -12,7 +12,7 @@ const AddNewPostComponent = () => {
 
   const {categoryList, getCategoryList, blogPostCreate, blogPostFormOnChange, blogPostForm} = BlogPostStore();
 
-  blogPostForm.url = blogPostForm.title.trim().replace(/\s+/g, " ").toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+  blogPostForm.url = blogPostForm.title.trim().replace(/[^a-zA-Z0-9-]/g, '').split("-").join(" ").replace(/\s+/g, '-').toLowerCase();
 
   const [blogDetails, setBlogDetails]=useState("");
 
@@ -42,9 +42,12 @@ const AddNewPostComponent = () => {
     blogPostForm.tags = tags.toString();
     blogPostForm.details = blogDetails;
     blogPostForm.thumbnail = "/exercise.jpg";
-    
+
+
     if(ValidationHelper.IsEmpty(blogPostForm.title)){
       toast.error("Title should not be empty!");
+    }else if(ValidationHelper.IsEmpty(blogPostForm.categoryId)){
+      toast.error("Select a category");
     }else{
       const post = await blogPostCreate(blogPostForm);
     if(post){
@@ -62,6 +65,7 @@ const AddNewPostComponent = () => {
   useEffect(() => {
     (async()=>{
         await getCategoryList();
+        blogPostForm.categoryId = categoryList[0]._id;
     })()
 }, []);
 
@@ -116,10 +120,12 @@ const uploadFile= async()=>{
                 
                     <div className="form-group my-3">
                       <label>Category</label>
-                      <select className="form-select my-2" value={blogPostForm.categoryId} onChange={(e)=>{blogPostFormOnChange("categoryId", e.target.value)}} >
-                        
-                        {categoryList != null && categoryList.map((item)=>{
-                          return (<option key={item._id} value={item._id}>{item.categoryName}</option>);
+                      <select className="form-select my-2" value={blogPostForm.categoryId} onChange={(e) => {
+                        blogPostFormOnChange("categoryId", e.target.value)
+                      }} >
+                        <option value="">Select a category</option>
+                        {categoryList != null && categoryList.map((item, i) => {
+                          return (<option key={i} value={item._id}>{item.categoryName}</option>);
                         })}
                       </select>
                     </div>
