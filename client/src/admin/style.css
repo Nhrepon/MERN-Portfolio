@@ -1,0 +1,49 @@
+.admin-sidebar{
+    width: 250px;
+    height: auto;
+}
+.admin-sidebar > ul li{
+    width: 100%;
+    background-color: #d2d2d2;
+    margin: 3px 0;
+    border-radius: 5px;
+}
+
+.admin-sidebar > ul li > ul li{
+    width: 100%;
+}
+
+.admin-sidebar i{
+    margin-right: 8px;
+}
+
+
+
+
+
+
+.admin-content{
+    margin-left: 250px;
+}
+
+
+
+@media  (max-width: 960px) {
+    .admin-sidebar{
+        width: 150px;
+    }
+
+    .admin-content{
+        margin-left: 150px;
+    }
+}
+
+@media  (max-width: 768px) {
+    .admin-sidebar{
+        width: 100px;
+    }
+
+    .admin-content{
+        margin-left: 100px;
+    }
+}

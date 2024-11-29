@@ -73,37 +73,6 @@ mongoose
 
 
 
-// File uploading process
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: (req, file, cb) =>{
-        return cb(null, '/uploads');
-    },
-    filename: (req, file, cb)=> {
-        return cb(null, Date.now() +"-"+ path.extname(file.originalname));
-    }
-});
-
-const upload = multer({ storage: storage });
-// Route to handle single file upload
-app.post('/api/upload', upload.single('image'), (req, res) => {
-    if(req.file){
-        res.json({status:"success", data: req.file , message: 'Single file uploaded successfully!' });
-    }else {
-        res.json({status:"failed" , message: 'Single file uploaded failed!' });
-    }
-});
-
-
-
-
-
-
-
-
-
-
-
 // Api router manage
 app.use("/api", router);
 

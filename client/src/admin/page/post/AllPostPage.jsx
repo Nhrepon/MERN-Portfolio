@@ -1,5 +1,5 @@
-import React from 'react';
-import DashboardLayout from '../../layout/DashboardLayout';
+
+import DashboardLayout from '../../DashboardLayout.jsx';
 import AllPostComponent from '../../component/post/AllPostComponent';
 
 const AllPostPage = () => {

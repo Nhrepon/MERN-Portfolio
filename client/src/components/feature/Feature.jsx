@@ -24,7 +24,7 @@ const Feature = () => {
                         ]}
                         wrapper="h2"
                         speed={10}
-                        style={{fontSize: '2em', display: 'inline-block'}}
+                        style={{fontSize: '2em', display: 'inline-block', fontWeight:'bold'}}
                         repeat={Infinity}
                     />
                     <p className='fs-4'>Full stack web application developer using React js, Node js, Express js and MongoDB.</p>

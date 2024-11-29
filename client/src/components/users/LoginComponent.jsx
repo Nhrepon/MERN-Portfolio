@@ -4,6 +4,7 @@ import SubmitButton from "./SubmitButton.jsx";
 import UserStore from "../../store/UserStore.js";
 import ValidationHelper from "../../utility/ValidationHelper.js";
 import {toast} from "react-hot-toast";
+import {redirect} from "react-router";
 
 const LoginComponent = () => {
 
@@ -16,10 +17,11 @@ const LoginComponent = () => {
             toast.error("Valid email required!");
         }else {
             let response = await userLogin(loginFormValue);
-            if (response==true){
+            if (response===true){
                 toast.success("Login success!");
-                navigate("/dashboard")
-            }else if(response==false){
+                window.location.href = "/dashboard";
+                //navigate("/dashboard");
+            }else if(response===false){
                 toast.error("userNotFound")
             }else {
                 toast.error("failed")

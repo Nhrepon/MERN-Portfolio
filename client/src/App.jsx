@@ -17,6 +17,7 @@ import AllPostPage from './admin/page/post/AllPostPage.jsx';
 import CategoryPage from './admin/page/post/CategoryPage.jsx';
 import TagsPage from './admin/page/post/TagsPage.jsx';
 import BlogDetailsPage from "./page/BlogDetailsPage.jsx";
+import InboxPage from "./admin/page/inbox/InboxPage.jsx";
 
 const App = () => {
 
@@ -42,6 +43,8 @@ const App = () => {
             <Route path="/dashboard" element={<DashboardPage/>} />
             <Route path="/profile" element={<UserPage/>} />
             <Route path="/setting" element={<DashboardPage/>} />
+
+            <Route path="/inbox" element={<InboxPage/>} />
 
             <Route path="/new-post" element={<NewPostPage/>} />
             <Route path="/all-post" element={<AllPostPage/>} />

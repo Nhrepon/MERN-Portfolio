@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import './style.css';
 import ValidationHelper from "../../../utility/ValidationHelper";
 import axios from "axios";
+import FileUploadComponent from "../media/FileUploadComponent.jsx";
 
 
 
@@ -72,21 +73,6 @@ const AddNewPostComponent = () => {
 
 
 
-const {file, setFile} = useState();
-
-const uploadFile= async()=>{
-  
-  try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await axios.post("http://localhost:5000/upload", formData);
-
-      console.log(response.data);
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
 
 
 
@@ -144,15 +130,7 @@ const uploadFile= async()=>{
                       </div>
                     </div>
 
-                    <div className="form-group my-3 file-upload">
-                      
-                        <label>Thumbnail</label>
-                        <input onChange={(e)=>{setFile(e.tags.file[0])}} type="file" accept="image/*" className="form-control my-2" />
-                      
-                      <p>Select an image</p>
-                      <img src={file} alt="" className="w-50"/>
-                    </div>
-                    <button onClick={uploadFile} type="submit">upload</button>
+                    <FileUploadComponent/>
                   </div>
                 </div>
 

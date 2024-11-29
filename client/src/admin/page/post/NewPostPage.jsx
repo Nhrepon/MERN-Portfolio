@@ -1,6 +1,6 @@
 
 import AddNewPostComponent from "../../component/post/AddNewPostComponent.jsx";
-import DashboardLayout from "../../layout/DashboardLayout.jsx";
+import DashboardLayout from "../../DashboardLayout.jsx";
 
 const NewPostPage = () => {
     return (

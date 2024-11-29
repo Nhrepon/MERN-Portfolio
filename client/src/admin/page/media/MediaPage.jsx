@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardLayout from '../../layout/DashboardLayout';
-import ImageUpload from "../../component/media/ImageUpload.jsx";
+import DashboardLayout from '../../DashboardLayout.jsx';
+import FileUploadComponent from "../../component/media/FileUploadComponent.jsx";
 
 const MediaPage = () => {
     return (
@@ -10,9 +10,7 @@ const MediaPage = () => {
                     <div className="col-12">
                         <h3 className="fs-4">Media</h3>
                         <hr />
-                        <p>This page is under construction.</p>
-
-                        <ImageUpload/>
+                        <FileUploadComponent/>
                     </div>
                 </div>
             </div>

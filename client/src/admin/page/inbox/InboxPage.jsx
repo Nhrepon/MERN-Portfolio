@@ -1,13 +1,13 @@
 import React from 'react';
 import DashboardLayout from "../../DashboardLayout.jsx";
-import UserComponent from "../../component/user/UserComponent.jsx";
+import InboxComponents from "../../component/inbox/InboxComponents.jsx";
 
-const UserPage = () => {
+const InboxPage = () => {
     return (
         <DashboardLayout>
-            <UserComponent/>
+            <InboxComponents/>
         </DashboardLayout>
     );
 };
 
-export default UserPage;
+export default InboxPage;

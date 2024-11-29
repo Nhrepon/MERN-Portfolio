@@ -1,16 +1,31 @@
 
-import { useEffect } from "react";
+import {useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 import UserStore from "../store/UserStore";
+import './style.css';
 
 const AdminSidebarNavigation = () => {
 
   const { getUserProfile,userProfileForm } = UserStore();
+  //const ddref = useRef();
+
   useEffect( () => {
     (async()=>{
         await getUserProfile();
     })();
+
+
   }, []);
+
+// const dd= ()=>{
+//   const dropdown = ddref.current;
+//   if (dropdown){
+//     const icon = document.createElement('i');
+//     icon.classList.add('bi', 'bi-chevron-down');
+//     dropdown.append(icon);
+//   }
+//
+// }
 
 
 
@@ -18,176 +33,149 @@ const AdminSidebarNavigation = () => {
 
 
   return (
-    <div>
-      <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 bg-light admin-sidebar">
-        <Link
-          to="/dashboard"
-          className="d-flex align-items-center justify-content-center nav-link link-dark"
-        >
-          <i className="bi bi-speedometer2 fs-5"></i>
-          <span className="fs-5">Dashboard</span>
-        </Link>
+
+      <div className="admin-sidebar d-flex flex-column bg-success p-2 vh-100">
+        <div className="d-flex align-items-center justify-content-around">
+          <Link to="/" className="nav-link text-light ">
+            <i className="fs-4 bi bi-house-fill"></i>
+          </Link>
+          <Link to="/dashboard" className="nav-link text-light">
+            <i className="bi bi-speedometer2 fs-4"></i>
+            <span className="fs-3 d-none d-sm-inline">Dashboard</span>
+          </Link>
+        </div>
         <hr />
 
-        <ul
-          className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-          id="menu"
-        >
+        <ul className="nav" id="menu">
           <li className="nav-item">
-            <Link to="/dashboard" className="nav-link align-middle px-0 link-dark">
-              <i className="fs-4 bi-house-fill"></i>
-              <span className="ms-1 d-none d-sm-inline">Home</span>
+            <Link to="/inbox" className="nav-link link-dark">
+              <i className="fs-4 bi-mailbox-flag"></i>
+              <span className="ms-1 d-none d-sm-inline">Inbox</span>
             </Link>
           </li>
-          <li>
-            <Link
-              to="#post"
-              data-bs-toggle="collapse"
-              className="nav-link px-0 align-middle link-dark"
-            >
+          <li className="nav-item">
+            <Link to="#post" data-bs-toggle="collapse" className="nav-link link-dark">
               <i className="fs-4 bi bi-card-text"></i>
               <span className="ms-1 d-none d-sm-inline">Post</span>
+              <i className="fs-4 bi bi-chevron-down position-absolute end-0 me-4"></i>
             </Link>
-            <ul
-              className="collapse show nav flex-column ms-1"
-              id="post"
-              data-bs-parent="#menu"
-            >
-              <li className="w-100 nav-item">
-                <Link to="/new-post" className="nav-link link-dark">
-                  <span className="d-none d-sm-inline">New post</span>
-                  <span className="d-sm-none d-inline-block">New</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/all-post" className="nav-link link-dark">
-                  <span className="d-none d-sm-inline">All post</span>
-                  <span className="d-sm-none d-inline-block">All</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/category" className="nav-link link-dark">
-                  <span className="d-none d-sm-inline">Category</span>
-                  <span className="d-sm-none d-inline-block">Cat</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/tags" className="nav-link link-dark">
-                  <span className="d-none d-sm-inline">Tags</span>
-                  <span className="d-sm-none d-inline-block">Tags</span>
-                </Link>
-              </li>
-            </ul>
+
           </li>
-          <li>
-            <Link to="/media" className="nav-link px-0 align-middle link-dark">
+          <ul className="collapse nav ms-3" id="post" data-bs-parent="#menu">
+            <li className="nav-item">
+              <Link to="/new-post" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">New post</span>
+                <span className="d-sm-none d-inline-block">New</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/all-post" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">All post</span>
+                <span className="d-sm-none d-inline-block">All</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/category" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Category</span>
+                <span className="d-sm-none d-inline-block">Cat</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/tags" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Tags</span>
+                <span className="d-sm-none d-inline-block">Tags</span>
+              </Link>
+            </li>
+          </ul>
+          <li className="nav-item">
+            <Link to="/media" className="nav-link link-dark">
               <i className="fs-4 bi bi-card-image "></i>
               <span className="ms-1 d-none d-sm-inline">Media</span>
             </Link>
           </li>
-          <li>
-            <Link to="#Portfolio"
-              data-bs-toggle="collapse"
-              className="nav-link px-0 align-middle  link-dark"
-            >
-              <i class="fs-4 bi bi-briefcase"></i>
+          <li className="nav-item">
+            <Link to="#Portfolio" data-bs-toggle="collapse" className="nav-link link-dark">
+              <i className="fs-4 bi bi-briefcase"></i>
               <span className="ms-1 d-none d-sm-inline">Portfolio</span>
+              <i className="fs-4 bi bi-chevron-down position-absolute end-0 me-4"></i>
             </Link>
-            <ul
-              className="collapse nav flex-column ms-1"
-              id="Portfolio"
-              data-bs-parent="#menu"
-            >
-              <li className="w-100">
-                <Link to="/mern" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">MERN</span> 1
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">React</span> 2
-                </a>
-              </li>
-            </ul>
           </li>
-          <li>
-            <Link
-              to="#Products"
-              data-bs-toggle="collapse"
-              className="nav-link px-0 align-middle link-dark"
-            >
+          <ul className="collapse nav ms-3" id="Portfolio" data-bs-parent="#menu">
+            <li className="nav-item">
+              <Link to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">MERN</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">React</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Product</span>
+              </Link>
+            </li>
+          </ul>
+          <li className="nav-item">
+            <Link to="#Products" data-bs-toggle="collapse" className="nav-link link-dark">
               <i className="fs-4 bi-cart4"></i>
               <span className="ms-1 d-none d-sm-inline">Products</span>
+              <i className="fs-4 bi bi-chevron-down position-absolute end-0 me-4"></i>
             </Link>
-            <ul
-              className="collapse nav flex-column ms-1"
-              id="Products"
-              data-bs-parent="#menu"
-            >
-              <li className="w-100">
-                <a href="#" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">Product</span> 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">Product</span> 2
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">Product</span> 3
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link px-0 link-dark">
-                  <span className="d-none d-sm-inline">Product</span> 4
-                </a>
-              </li>
-            </ul>
           </li>
-          <li>
-            <a href="#" className="nav-link px-0 align-middle link-dark">
+          <ul className="collapse nav ms-3" id="Products" data-bs-parent="#menu">
+            <li className="nav-item">
+              <Link  to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Product</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link  to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Product</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link  to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Product</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link  to="/mern" className="nav-link link-dark">
+                <span className="d-none d-sm-inline">Product</span>
+              </Link>
+            </li>
+          </ul>
+          <li className="nav-item">
+            <Link  to="/mern" className="nav-link link-dark">
               <i className="fs-4 bi-people"></i>
               <span className="ms-1 d-none d-sm-inline">Customers</span>
-            </a>
+            </Link>
           </li>
-          <li>
-            <Link to="/users" className="nav-link px-0 align-middle link-dark">
+          <li className="nav-item">
+            <Link to="/users" className="nav-link link-dark">
               <i className="fs-4 bi bi-person-circle"></i>
               <span className="ms-1 d-none d-sm-inline">Users</span>
             </Link>
           </li>
         </ul>
-        <hr />
-        <div className="dropdown pb-3">
-          <a
-            href="#"
-            className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-            id="dropdownUser2"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt="home"
-              width="32"
-              height="32"
-              className="rounded-circle me-2"
-            />
-            <strong>{userProfileForm.userName}</strong>
-          </a>
-          <ul
-            className="dropdown-menu text-small shadow"
-            aria-labelledby="dropdownUser2"
-          >
+
+
+        <hr/>
+        <div className="dropdown pb-3 ">
+          <Link to="#" className="d-flex align-items-center link-dark nav-link dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/nhrepon.jpg" alt="home" width={"32"} height={"32"} className="rounded-circle me-2"/>
+            <strong className={"d-none d-sm-inline"}>{userProfileForm.userName}</strong>
+          </Link>
+          <ul className="dropdown-menu shadow-lg ">
             <li>
-              <Link to="/profile"  className="dropdown-item">
+              <Link to="/profile" className="dropdown-item">
                 New project...
               </Link>
             </li>
             <li>
-              <Link to="/setting" a className="dropdown-item">
+              <Link to="/setting" className="dropdown-item">
                 Settings
               </Link>
             </li>
@@ -197,17 +185,17 @@ const AdminSidebarNavigation = () => {
               </Link>
             </li>
             <li>
-              <hr className="dropdown-divider" />
+              <hr className="dropdown-divider"/>
             </li>
             <li>
-              <Link to="/logout"  className="dropdown-item">
+              <Link to="/logout" className="dropdown-item">
                 Sign out
               </Link>
             </li>
           </ul>
         </div>
       </div>
-    </div>
+
   );
 };
 

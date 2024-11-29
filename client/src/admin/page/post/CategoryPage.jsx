@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import DashboardLayout from "../../layout/DashboardLayout.jsx";
+import DashboardLayout from "../../DashboardLayout.jsx";
 import CategoryComponent from "../../component/post/CategoryComponent.jsx";
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import DashboardLayout from "../../layout/DashboardLayout.jsx";
+import DashboardLayout from "../../DashboardLayout.jsx";
 import Swal from "sweetalert2";
 import BlogPostStore from "../../store/BlogPostStore.js";
 
