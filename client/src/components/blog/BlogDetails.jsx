@@ -1,14 +1,14 @@
 import {useParams} from "react-router";
 import parse from "html-react-parser";
 import './blogDetails.css';
-import BlogPostStore from "../../admin/store/BlogPostStore.js";
+import BlogPostStoreDashboard from "../../admin/store/BlogPostStore-Dashboard.js";
 import {sitename} from "../../config.js";
 
 const BlogDetails = () => {
 
     const {url} = useParams();
 
-    const {blogPostList} = BlogPostStore();
+    const {blogPostList} = BlogPostStoreDashboard();
 
 
 

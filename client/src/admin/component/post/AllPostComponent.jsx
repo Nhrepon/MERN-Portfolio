@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import BlogPostStore from '../../store/BlogPostStore';
+import BlogPostStoreDashboard from '../../store/BlogPostStore-Dashboard.js';
 import toast from 'react-hot-toast';
 
 const AllPostComponent = () => {
 
-    const {getBlogPost, blogPostList, blogPostDelete} = BlogPostStore();
+    const {getBlogPost, blogPostList, blogPostDelete} = BlogPostStoreDashboard();
 
     useEffect(()=>{
         (async()=>{

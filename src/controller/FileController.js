@@ -40,3 +40,41 @@ exports.uploadFile=async (req, res)=>{
         res.json({status:`error`, message:e});
     }
 }
+
+
+
+
+exports.fileList=async (req, res)=>{
+    try {
+        const file=await FileModel.find().sort({ updatedAt : -1 });
+        res.json({status:"success", data:file});
+    }catch (e) {
+       res.json({status:'error', message:e});
+    }
+}
+
+
+exports.fileDelete=async (req, res)=>{
+    try {
+        const {id}=req.params;
+        const file = await FileModel.findOne({_id:id});
+        const fileDirectory = path.join(__dirname, '../..', file.filePath);
+        if (file) {
+            fs.unlink(fileDirectory, (async (err) => {
+                if (err){
+                    res.json({status:"File delete failed from directory!", message:err});
+                }
+                else {
+                    const data =await FileModel.deleteOne({_id: id});
+                    res.json({status:"success", data:data});
+                }
+            }));
+        }
+
+
+
+
+    }catch (e) {
+        res.json({status:'error', message:e});
+    }
+}

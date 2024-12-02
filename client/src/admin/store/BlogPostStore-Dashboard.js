@@ -1,7 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
 
-const BlogPostStore = create((set) => ({
+const BlogPostStoreDashboard = create((set) => ({
 
     categoryForm:{categoryName:"", categoryDescription:"", categoryImage:""},
     categoryFormOnChange: (name, value)=>{
@@ -120,4 +120,4 @@ const BlogPostStore = create((set) => ({
 
 }));
 
-export default BlogPostStore;
+export default BlogPostStoreDashboard;

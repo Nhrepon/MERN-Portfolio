@@ -2,7 +2,7 @@ const express=require('express');
 const UserController = require('../controller/UserController');
 const BlogPostController = require('../controller/BlogPostController');
 const AuthMiddleware = require('../middleware/AuthMiddleware');
-const {uploadFile} = require("../controller/FileController");
+const {uploadFile, fileList, fileDelete} = require("../controller/FileController");
 const router=express.Router();
 
 
@@ -35,6 +35,8 @@ router.get("/blogList", BlogPostController.blogList);
 
 //File upload router
 router.post("/uploadFile", AuthMiddleware, uploadFile);
+router.get("/fileList", fileList);
+router.delete("/fileDelete/:id", fileDelete);
 
 
 

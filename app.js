@@ -37,7 +37,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        imgSrc: ["'self'", "https://thereadersea.com/", "https://usabilitydesigns.com/","https://talent-outsourcing.com/", "data:"],
+        imgSrc: ["'self'", "http://localhost:5000/", "data:"],
       },
     },
   }),
@@ -77,6 +77,15 @@ mongoose
 app.use("/api", router);
 
 app.set("etag", false);
+
+
+
+// to give access static file
+const path = require("path");
+//app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 // connect front end
 app.use(express.static("client/dist"));

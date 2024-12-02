@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QuillTextEditor from "../textEditor/QuillTextEditor";
-import BlogPostStore from "../../store/BlogPostStore";
+import BlogPostStoreDashboard from "../../store/BlogPostStore-Dashboard.js";
 import { toast } from 'react-hot-toast';
 import './style.css';
 import ValidationHelper from "../../../utility/ValidationHelper";
@@ -11,7 +11,7 @@ import FileUploadComponent from "../media/FileUploadComponent.jsx";
 
 const AddNewPostComponent = () => {
 
-  const {categoryList, getCategoryList, blogPostCreate, blogPostFormOnChange, blogPostForm} = BlogPostStore();
+  const {categoryList, getCategoryList, blogPostCreate, blogPostFormOnChange, blogPostForm} = BlogPostStoreDashboard();
 
   blogPostForm.url = blogPostForm.title.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').replace(/-+/g, '-').toLowerCase();
 

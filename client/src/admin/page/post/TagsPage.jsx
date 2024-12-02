@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import DashboardLayout from "../../DashboardLayout.jsx";
 import Swal from "sweetalert2";
-import BlogPostStore from "../../store/BlogPostStore.js";
+import BlogPostStoreDashboard from "../../store/BlogPostStore-Dashboard.js";
 
 const TagsPage = () => {
     
-  const {categoryList, getCategoryList, createCategory, deleteCategory, updateCategory}=BlogPostStore();
+  const {categoryList, getCategoryList, createCategory, deleteCategory, updateCategory}=BlogPostStoreDashboard();
   useEffect(() => {
       (async()=>{
           await getCategoryList();

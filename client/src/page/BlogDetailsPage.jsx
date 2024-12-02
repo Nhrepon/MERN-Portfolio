@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import MasterLayout from "../layout/MasterLayout.jsx";
 import BlogDetails from "../components/blog/BlogDetails.jsx";
-import BlogPostStore from "../admin/store/BlogPostStore.js";
+import BlogPostStoreDashboard from "../admin/store/BlogPostStore-Dashboard.js";
 
 
 
 const BlogDetailsPage = () => {
 
-    const {getBlogPost} = BlogPostStore();
+    const {getBlogPost} = BlogPostStoreDashboard();
 
     useEffect(() => {
         (async () => {

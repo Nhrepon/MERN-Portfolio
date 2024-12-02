@@ -1,13 +1,13 @@
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
-import BlogPostStore from "../../admin/store/BlogPostStore.js";
+import BlogPostStoreDashboard from "../../admin/store/BlogPostStore-Dashboard.js";
 
 
 
 
 const BlogListComponents = () => {
 
-    const {getBlogPost, blogPostList} = BlogPostStore();
+    const {getBlogPost, blogPostList} = BlogPostStoreDashboard();
 
     useEffect(() => {
         (async () => {

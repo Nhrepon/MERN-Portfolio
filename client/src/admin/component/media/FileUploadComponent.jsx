@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import axios from "axios";
 import "./style.css";
 import {toast} from "react-hot-toast";
+import MediaStoreDashboard from "../../store/MediaStore-Dashboard.js";
 
 const FileUploadComponent = () => {
 
+    const {getFileList}=MediaStoreDashboard();
     const [file, setFile]=useState();
 
     const handleFile = (e)=>{
@@ -12,12 +14,14 @@ const FileUploadComponent = () => {
     }
     const uploadFile =async ()=>{
 
-        try {
+
             const formData = new FormData();
             if (file!=null){
                 file.map((item)=>{
                     formData.append('file',item);
-                })}
+                })
+
+        try {
             const res = await axios.post("/api/uploadFile", formData, {headers: {
                     'Content-Type': 'multipart/form-data'
                 }});
@@ -26,12 +30,16 @@ const FileUploadComponent = () => {
                 document.getElementById("file").value = "";
                 setFile(null);
                 toast.success("Image upload success!");
+                await getFileList();
             }else {
                 toast.error("failed");
             }
         }catch (e) {
             toast.error(e);
         }
+            }else {
+                toast.error("Please, Select images");
+            }
     }
 
 
