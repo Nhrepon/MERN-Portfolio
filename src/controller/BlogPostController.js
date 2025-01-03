@@ -132,6 +132,7 @@ exports.blogList = async(req, res)=>{
             'tags':1,
             'url':1,
             'createdAt':1,
+            'updatedAt':1,
             'details.details':1,
             'category.categoryName':1,
             'category.categoryDescription':1,
@@ -153,5 +154,74 @@ exports.blogList = async(req, res)=>{
     } catch (error) {
         res.json({status:"failed", message:error});
     }
+}
+
+
+
+
+
+
+
+exports.singleBlog = async (req, res)=>{
+    try
+    {
+        const {url} = req.params;
+        const matchStage = {$match:{url:url}}
+        const joinWithDetails = {$lookup:{
+                from:"blogpostdetails",
+                localField:"_id",
+                foreignField:"blogPostId",
+                as:"details"
+            }}
+        const unwindDetails = {$unwind:"$details"}
+
+        const joinWithCategory = {$lookup:{
+                from:"blogpostcategories",
+                localField:"categoryId",
+                foreignField:"_id",
+                as:"category"
+            }}
+        const unwindCategory = {$unwind:"$category"}
+
+        const joinWithUser = {$lookup:{
+                from:"profiles",
+                localField:"userId",
+                foreignField:"userId",
+                as:"user"
+            }}
+        const unwindUser = {$unwind:"$user"}
+
+        const projection = {$project:{
+                'title':1,
+                'thumbnail':1,
+                'tags':1,
+                'url':1,
+                'createdAt':1,
+                'updatedAt':1,
+                'details.details':1,
+                'category.categoryName':1,
+                'category.categoryDescription':1,
+                'category.categoryImage':1,
+                'user.userName':1,
+
+            }}
+        const data = await BlogPostModel.aggregate([
+            matchStage,
+            joinWithDetails,
+            unwindDetails,
+            joinWithCategory,
+            unwindCategory,
+            joinWithUser,
+            unwindUser,
+            projection,
+        ]);
+        if (!data) {
+            return res.status(404).json({ status: "error", message: "Blog post not found" });
+        }
+        res.json({ status: "success", data:data });
+    } catch (e) {
+        res.status(500).json({ status: "error", message: e.message });
+    }
+
 }
 

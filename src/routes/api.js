@@ -30,6 +30,7 @@ router.post("/create-category", BlogPostController.createCategory);
 router.post("/createBlogPost", AuthMiddleware, BlogPostController.createBlogPost);
 router.get("/deleteBlogPost/:id", AuthMiddleware, BlogPostController.deleteBlogPost);
 router.get("/blogList", BlogPostController.blogList);
+router.get("/singleBlog/:url", BlogPostController.singleBlog);
 
 
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import QuillTextEditor from "../textEditor/QuillTextEditor";
 import BlogPostStoreDashboard from "../../store/BlogPostStore-Dashboard.js";
 import { toast } from 'react-hot-toast';
 import './style.css';
 import ValidationHelper from "../../../utility/ValidationHelper";
-import axios from "axios";
-import FileUploadComponent from "../media/FileUploadComponent.jsx";
+import MediaStoreDashboard from "../../store/MediaStore-Dashboard.js";
+import {backendUrl} from "../../../config.js";
 
 
 
@@ -38,11 +38,33 @@ const AddNewPostComponent = () => {
 
 
 
+
+
+
+
+  const {fileList,getFileList}=MediaStoreDashboard();
+  let thumbnail = "/exercise.jpg";
+
+
+  useEffect(() => {
+    (async()=>{
+        await getCategoryList();
+        await getFileList();
+        blogPostForm.categoryId = categoryList[0]._id;
+    })()
+}, []);
+
+const selectThumbnail = (path)=>{
+  thumbnail = path;
+}
+
+
+
   const blogSubmit = async ()=>{
-    
+
     blogPostForm.tags = tags.toString();
     blogPostForm.details = blogDetails;
-    blogPostForm.thumbnail = "/exercise.jpg";
+    blogPostForm.thumbnail = thumbnail;
 
 
     if(ValidationHelper.IsEmpty(blogPostForm.title)){
@@ -51,28 +73,15 @@ const AddNewPostComponent = () => {
       toast.error("Select a category");
     }else{
       const post = await blogPostCreate(blogPostForm);
-    if(post){
-      toast.success("Post create success!");
-    }else{
-      toast.error("failed");
-    }
+      if(post){
+        toast.success("Post create success!");
+      }else{
+        toast.error(`failed\n Url should be unique`);
+      }
     }
 
-    
+
   }
-
-
-
-  useEffect(() => {
-    (async()=>{
-        await getCategoryList();
-        blogPostForm.categoryId = categoryList[0]._id;
-    })()
-}, []);
-
-
-
-
 
 
 
@@ -130,7 +139,48 @@ const AddNewPostComponent = () => {
                       </div>
                     </div>
 
-                    <FileUploadComponent/>
+                    <div className={"text-center"}>
+                      <button className={"btn p-5"} style={{outline:"none", border:"none", background:"#dcdcdc"}} data-bs-toggle="modal" data-bs-target="#selectThumbnail">Select Thumbnail</button>
+
+
+                      {/*Modal*/}
+                      <div className="modal fade" id="selectThumbnail" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title" id="exampleModalLabel">Select image</h5>
+                              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                              <div className={"container"}>
+                                <div className="row">
+                                  {
+                                      fileList != null && fileList.map((item, i) => {
+                                        return (
+                                            <div key={i} className="col-sm-3 my-3">
+                                              <div className="card shadow position-relative">
+                                                <img onClick={() => selectThumbnail(item.filePath)} className={"w-100 rounded"} src={backendUrl + item.filePath}
+                                                     alt={item.name}
+                                                     crossOrigin={"anonymous"} title={item.name} data-bs-dismiss="modal"/>
+                                              </div>
+
+                                            </div>
+                                        )
+                                      })
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" className="btn btn-primary">Save</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
                   </div>
                 </div>
 

@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import BlogPostStoreDashboard from "../../admin/store/BlogPostStore-Dashboard.js";
+import {backendUrl} from "../../config.js";
 
 
 
@@ -15,6 +16,9 @@ const BlogListComponents = () => {
         })()
     }, []);
 
+    // const handleBlogId = (id)=>{
+    //     setBlogId(id);
+    // }
 
 
     return (
@@ -32,7 +36,7 @@ const BlogListComponents = () => {
                             <>
                                 <div className="col-md-6 col-lg-4">
                                     <div className="card shadow-sm mb-4 overflow-hidden" key={i}>
-                                        <img className="zoom card-img" src={item.thumbnail}/>
+                                        <img className="zoom card-img" src={backendUrl+item.thumbnail} alt={item.title} crossOrigin={"anonymous"}/>
                                         <div className="card-body">
                                             <div className="card-text my-2 d-flex justify-content-between">
                                                 <span className="me-4 text-success">

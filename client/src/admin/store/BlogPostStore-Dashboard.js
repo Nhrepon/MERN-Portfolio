@@ -108,8 +108,21 @@ const BlogPostStoreDashboard = create((set) => ({
         } catch (error) {
             console.log(error);
         }
-    },    
+    },
 
+    singlePost: null,
+    getSinglePost: async (url)=>{
+        try {
+            const response = await axios.get(`/api/singleBlog/${url}`)
+            //return response.data["data"];
+            set({singlePost:response.data["data"]});
+        }catch (e) {
+            return e.message;
+        }
+    },
+
+    blogId:null,
+    setBlogId:(id)=>set({blogId:id}),
 
 
 

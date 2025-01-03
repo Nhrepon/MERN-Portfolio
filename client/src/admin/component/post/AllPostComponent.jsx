@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import BlogPostStoreDashboard from '../../store/BlogPostStore-Dashboard.js';
 import toast from 'react-hot-toast';
+import {DeleteAlert} from "../../../utility/Utility.js";
+import axios from "axios";
 
 const AllPostComponent = () => {
 
@@ -18,12 +20,16 @@ const AllPostComponent = () => {
         alert(item.details['details'])
     }
     const deleteItem=async(id)=>{
-        const res=await blogPostDelete(id);
-        
-        if(res){
-            toast.success("Blog post deleted successfully!");
+        if(await DeleteAlert()){
+            const res=await blogPostDelete(id);
+            if (res) {
+                await getBlogPost();
+                toast.success("Blog post deleted successfully!");
+
+            }else {
+                toast.error(`${id} deleted failed! and message ${res.data.status}`);
+            }
         }
-        await getBlogPost();
     }
 
 

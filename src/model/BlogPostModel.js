@@ -7,7 +7,7 @@ const databaseSchema = mongoose.Schema(
     userId: { type: mongoose.Schema.Types.ObjectId, require: true },
     categoryId: { type: mongoose.Schema.Types.ObjectId, require: true },
     tags: {type: String},
-    url: {type: String},
+    url: {type: String, unique:true},
   },
   { timestamps: true, versionKey: false }
 );

@@ -1,19 +1,37 @@
+import {useEffect} from "react";
 import {useParams} from "react-router";
 import parse from "html-react-parser";
 import './blogDetails.css';
 import BlogPostStoreDashboard from "../../admin/store/BlogPostStore-Dashboard.js";
-import {sitename} from "../../config.js";
+import {backendUrl, sitename} from "../../config.js";
 
 const BlogDetails = () => {
 
     const {url} = useParams();
+    let {singlePost,getSinglePost} = BlogPostStoreDashboard();
 
-    const {blogPostList} = BlogPostStoreDashboard();
+    //alert(blogPostList +" / "+ url)
+    useEffect(() => {
+        (async () => {
+
+            await getSinglePost(url);
+
+        })()
+    }, []);
 
 
 
-    const details = blogPostList?.find(blogPostList => blogPostList.url === url);
 
+
+//alert(blogPostList +" / "+ url)
+
+
+    const details = singlePost?.find(post => post.url === url);
+
+    if (!details) {
+        // Handle case where no blog post is found for the given URL
+        return <div className={"text-center"}><h2>Blog not found.</h2></div>;
+    }
 
 
     return (
@@ -44,8 +62,8 @@ const BlogDetails = () => {
 
                         </div>
                         <div className="d-flex my-5 ">
-                            <img className="rounded mx-auto col-12 col-md-6" src={details.thumbnail}
-                                 alt={details.title}/>
+                            <img className="rounded mx-auto col-12 col-md-6" src={backendUrl+details.thumbnail}
+                                 alt={details.title} crossOrigin={"anonymous"}/>
                         </div>
                         <div className="d-flex content">
                             <div className="mx-auto col-12 col-md-8">{parse(details.details['details'])}</div>
