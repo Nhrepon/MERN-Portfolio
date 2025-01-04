@@ -74,7 +74,7 @@ const ContactComponents = () => {
                                 <div className="icon fs-3 p-0 text-success">
                                     <i className="bi bi-house"></i>
                                 </div>
-                                <div className="content p-0 text-light">
+                                <div className="contact-info-content p-0 text-light">
                                     <p className="fs-5 fw-bold p-0 m-0">Location</p>
                                     <p className="p-0 m-0">Shahajad pur, Maijdee, Noakhali, Bangladesh.</p>
                                 </div>
@@ -84,7 +84,7 @@ const ContactComponents = () => {
                                 <div className="icon fs-3 p-0  text-success">
                                     <i className="bi bi-mailbox-flag"></i>
                                 </div>
-                                <div className="content p-0 text-light">
+                                <div className="contact-info-content p-0 text-light">
                                     <p className="fs-5 fw-bold p-0 m-0">Drop a mail</p>
                                     <p className="p-0 m-0">nurhossainrepon7248@gmail.com</p>
                                 </div>
@@ -94,7 +94,7 @@ const ContactComponents = () => {
                                 <div className="icon fs-3 p-0  text-success">
                                     <i className="bi bi-whatsapp"></i>
                                 </div>
-                                <div className="content p-0 text-light">
+                                <div className="contact-info-content p-0 text-light">
                                     <p className="fs-5 fw-bold p-0 m-0">Whatsapp</p>
                                     <p className="p-0 m-0">+8801829-938427<br/> +88018-6677-5577</p>
                                 </div>

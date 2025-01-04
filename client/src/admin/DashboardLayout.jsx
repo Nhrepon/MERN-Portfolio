@@ -2,6 +2,7 @@
 import AdminSidebarNavigation from "./AdminSidebarNavigation.jsx";
 
 import {Toaster} from "react-hot-toast";
+
 import './style.css';
 
 const DashboardLayout = (props) => {
@@ -9,10 +10,11 @@ const DashboardLayout = (props) => {
       <div className="">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-auto position-fixed" >
-              <AdminSidebarNavigation />
+            <div className="col sidebar bg-success p-1" >
+                <AdminSidebarNavigation />
             </div>
-            <div className="col bg-light py-2 admin-content" >
+            <div className="col content" >
+                {/* eslint-disable-next-line react/prop-types */}
               {props.children}
             </div>
           </div>
