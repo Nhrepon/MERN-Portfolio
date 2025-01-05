@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 import './blogDetails.css';
 import BlogPostStoreDashboard from "../../admin/store/BlogPostStore-Dashboard.js";
 import {backendUrl, sitename} from "../../config.js";
+import Loader from "../../loader/Loader.jsx";
 
 const BlogDetails = () => {
 
@@ -30,17 +31,16 @@ const BlogDetails = () => {
 
     if (!details) {
         // Handle case where no blog post is found for the given URL
-        return <div className={"text-center"}><h2>Blog not found.</h2></div>;
+        return <Loader/>;
     }
 
 
     return (
-
             <div className="container">
                 <div className="row">
                     <div className="blogDetails col-12">
                         <span className="mt-5 py-3 small">{sitename + " " + window.location.pathname.split("/").join(" > ")}</span>
-                        <h2 className="mt-5 fw-bold fs-2 text-center mx-auto col-12 col-md-8">{details.title}</h2>
+                        <h2 className="mt-5 fw-bold fs-1 text-center mx-auto col-12 col-md-8">{details.title}</h2>
                         <div className="text-center mx-auto">
                             <span className="me-4">
                                 <i className="bi bi-person-circle"> </i> {details.user['userName']}
@@ -73,7 +73,6 @@ const BlogDetails = () => {
                     </div>
                 </div>
             </div>
-
     );
 };
 

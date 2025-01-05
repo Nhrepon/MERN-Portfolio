@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import BlogPostStoreDashboard from '../../store/BlogPostStore-Dashboard.js';
 import toast from 'react-hot-toast';
 import {DeleteAlert} from "../../../utility/Utility.js";
-import axios from "axios";
 import {backendUrl} from "../../../config.js";
 
 const AllPostComponent = () => {

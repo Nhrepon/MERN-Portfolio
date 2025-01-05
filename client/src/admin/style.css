@@ -1,26 +1,26 @@
-.sidebar{
+.dashboard-sidebar{
     width: 250px !important;
     position: fixed;
     height: 100vh;
     overflow: auto;
     z-index: 999;
 }
-.sidebar::-webkit-scrollbar{
+.dashboard-sidebar::-webkit-scrollbar{
     display: none;
 }
 
-.sidebar .menu > ul{
+.dashboard-sidebar .menu > ul{
     display: flex;
     flex-direction: column;
 }
 
-.sidebar .menu ul li{
+.dashboard-sidebar .menu ul li{
     background-color: white;
     border-radius: 5px;
     margin: 5px 0;
     width: 100%;
 }
-.sidebar .menu ul li i{
+.dashboard-sidebar .menu ul li i{
     margin-right: 7px;
 }
 
@@ -28,7 +28,7 @@
 
 
 /*/////// Content ///////////////////////*/
-.content{
+.dashboard-content{
     background-color: #eaeaea;
     width: calc(100% - 250px) !important;
     margin-left: 250px;
@@ -37,21 +37,21 @@
 
 
 @media  (max-width: 960px) {
-    .sidebar{
+    .dashboard-sidebar{
         width: 180px !important;
     }
 
-    .content{
+    .dashboard-content{
         margin-left: 150px;
     }
 }
 
 @media  (max-width: 768px) {
-    .sidebar{
+    .dashboard-sidebar{
         width: 90px !important;
     }
 
-    .content{
+    .dashboard-content{
         margin-left: 90px;
     }
 }

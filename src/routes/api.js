@@ -3,6 +3,7 @@ const UserController = require('../controller/UserController');
 const BlogPostController = require('../controller/BlogPostController');
 const AuthMiddleware = require('../middleware/AuthMiddleware');
 const {uploadFile, fileList, fileDelete} = require("../controller/FileController");
+const {submitMessage, messageList} = require("../controller/ContactController");
 const router=express.Router();
 
 
@@ -38,6 +39,13 @@ router.get("/singleBlog/:url", BlogPostController.singleBlog);
 router.post("/uploadFile", AuthMiddleware, uploadFile);
 router.get("/fileList", fileList);
 router.delete("/fileDelete/:id", fileDelete);
+
+
+
+
+// Contact form router
+router.post("/submitMessage", submitMessage);
+router.get("/messageList", messageList);
 
 
 

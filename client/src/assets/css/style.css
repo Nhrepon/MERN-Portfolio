@@ -2,7 +2,9 @@
   background-color: rgb(241, 250, 241);
   max-width: 1920px;
   margin: 0 auto;
+    font-family: Georgia, Serif, sans-serif;
 }
+
 .container-fluid{
     max-width: 1920px;
 }

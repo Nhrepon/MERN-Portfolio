@@ -4,7 +4,8 @@ import NewsletterComponent from "./NewsletterComponent.jsx";
 
 const FooterComponent = () => {
     return (
-        <div className="container-fluid bg-success text-light mt-5">
+
+        <div className="footer container-fluid bg-success text-light mt-5 bottom-0">
             <div className="container">
                 <div className="row py-3">
                     <div className="col-md-4">

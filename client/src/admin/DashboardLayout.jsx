@@ -10,10 +10,10 @@ const DashboardLayout = (props) => {
       <div className="">
         <div className="container-fluid">
           <div className="row">
-            <div className="col sidebar bg-success p-1" >
+            <div className="col-auto dashboard-sidebar bg-success p-1" >
                 <AdminSidebarNavigation />
             </div>
-            <div className="col content" >
+            <div className="col dashboard-content" >
                 {/* eslint-disable-next-line react/prop-types */}
               {props.children}
             </div>
